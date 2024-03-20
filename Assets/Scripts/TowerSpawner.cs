@@ -15,6 +15,8 @@ public class TowerSpawner : MonoBehaviour
     [SerializeField] Tower defaultTower;
     // more to come...
 
+    private Tower towerMarker;
+
     // grid related
     [Header("Grid:")]
     [SerializeField] Tilemap tilemap;
@@ -22,6 +24,8 @@ public class TowerSpawner : MonoBehaviour
 
 
     private bool spawnerIsActive;
+
+    private Vector3 mousePosition;
 
     private void Awake()
     {
@@ -64,8 +68,6 @@ public class TowerSpawner : MonoBehaviour
         }
 
 
-
-        towerIndicator.transform.position = GetMousePosition();
     }
 
 
@@ -97,7 +99,11 @@ public class TowerSpawner : MonoBehaviour
 
     }
 
-
+    private void StartTowerPlacement(Tower newTower)
+    {
+        towerMarker = Instantiate(newTower, mousePosition, Quaternion.identity);
+        spawnerIsActive = true;
+    } 
 
 
 }
