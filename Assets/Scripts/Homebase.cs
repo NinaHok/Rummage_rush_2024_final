@@ -10,7 +10,6 @@ public class Homebase : MonoBehaviour
     private float currentHealth;
     
     [SerializeField] HealthBar healthBar;
-    [SerializeField] float range = 3f;
 
 
     //Timers
@@ -22,32 +21,36 @@ public class Homebase : MonoBehaviour
     [SerializeField] Collider[] colliders;
     [SerializeField] List<Enemy> enemiesInRange;
     [SerializeField] Enemy targetedEnemy;
-    private float incomingDamage;
+   
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentHealth = homebaseHealth;
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (enemiesInRange.Count > 0)
+    {       
+        ScanForEnemies();
+
+        if (targetedEnemy)
         {
             damageTakingTimer += Time.deltaTime;
-            if (damageTakingTimer >= damageTakingDelay)
-            {
-                damageTakingDelay = 0f;
-                ScanForEnemies();
-            }
+
+        }
+
+        if(damageTakingTimer >= damageTakingDelay)
+        {
+            damageTakingTimer = 0;
+            TakeDamage(enemyLayers);
         }
     }
 
 
     private void ScanForEnemies()
     {
-        colliders = Physics.OverlapSphere(transform.position, range, enemyLayers);
+        colliders = Physics.OverlapBox(transform.position, transform.localScale/2, transform.rotation, enemyLayers);
 
         enemiesInRange.Clear();
 
