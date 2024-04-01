@@ -8,8 +8,10 @@ public class Homebase : MonoBehaviour
 
     [SerializeField] float homebaseHealth = 20f;
     private float currentHealth;
+    [SerializeField] float incomingEnemyDamage = 10f;
+
     
-    [SerializeField] HealthBar healthBar;
+    [SerializeField] HomebaseHealthBar healthBar;
 
 
     //Timers
@@ -42,8 +44,9 @@ public class Homebase : MonoBehaviour
 
         if(damageTakingTimer >= damageTakingDelay)
         {
-            damageTakingTimer = 0;
             TakeDamage();
+            damageTakingTimer = 0;
+            
         }
     }
 
@@ -65,13 +68,14 @@ public class Homebase : MonoBehaviour
         }
     }
 
-    private void TakeDamage(float incomingDamage)
+    public void TakeDamage()
     {
         if (targetedEnemy != null)
         {
-            currentHealth -= incomingDamage;
+            currentHealth -= incomingEnemyDamage;
 
-            healthBar.UpdateHealthBar(currentHealth, homebaseHealth);
+            HomebaseHealthBar.UpdateHomebaseHealthBar(currentHealth, homebaseHealth);
+
 
             if(currentHealth <= 0)
             {
