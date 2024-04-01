@@ -7,16 +7,16 @@ public class Homebase : MonoBehaviour
 
 
     [SerializeField] float homebaseHealth = 20f;
-    private float currentHealth;
+    private float currentHomebaseHealth;
     [SerializeField] float incomingEnemyDamage = 10f;
 
-    
+
     [SerializeField] HomebaseHealthBar healthBar;
 
 
     //Timers
     [SerializeField] float damageTakingTimer;
-    [SerializeField] float damageTakingDelay;
+    [SerializeField] float damageTakingDelay = 2f;
 
     //Enemy bookkeping
     [SerializeField] LayerMask enemyLayers;
@@ -28,7 +28,7 @@ public class Homebase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = homebaseHealth;
+        currentHomebaseHealth = homebaseHealth;
     }
 
     // Update is called once per frame
@@ -38,14 +38,7 @@ public class Homebase : MonoBehaviour
 
         if (targetedEnemy)
         {
-            damageTakingTimer += Time.deltaTime;
-
-        }
-
-        if(damageTakingTimer >= damageTakingDelay)
-        {
             TakeDamage();
-            damageTakingTimer = 0;
             
         }
     }
@@ -72,12 +65,14 @@ public class Homebase : MonoBehaviour
     {
         if (targetedEnemy != null)
         {
-            currentHealth -= incomingEnemyDamage;
-
-            HomebaseHealthBar.UpdateHomebaseHealthBar(currentHealth, homebaseHealth);
 
 
-            if(currentHealth <= 0)
+            currentHomebaseHealth -= incomingEnemyDamage * enemiesInRange.Count;
+
+           healthBar.UpdateHomebaseHealthBar(currentHomebaseHealth, homebaseHealth);
+
+
+            if(currentHomebaseHealth <= 0)
             {
                 Debug.Log($"Health = 0. Game over");
             }
