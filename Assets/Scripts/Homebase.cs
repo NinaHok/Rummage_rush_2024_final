@@ -43,7 +43,7 @@ public class Homebase : MonoBehaviour
         if(damageTakingTimer >= damageTakingDelay)
         {
             damageTakingTimer = 0;
-            TakeDamage(enemyLayers);
+            TakeDamage();
         }
     }
 
