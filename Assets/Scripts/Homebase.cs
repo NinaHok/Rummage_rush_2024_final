@@ -6,7 +6,7 @@ public class Homebase : MonoBehaviour
 {
 
 
-    [SerializeField] float homebaseHealth = 20f;
+    [SerializeField] float homebaseHealth = 100f;
     private float currentHomebaseHealth;
     [SerializeField] float incomingEnemyDamage = 10f;
 
@@ -23,7 +23,11 @@ public class Homebase : MonoBehaviour
     [SerializeField] Collider[] colliders;
     [SerializeField] List<Enemy> enemiesInRange;
     [SerializeField] Enemy targetedEnemy;
-   
+
+    [SerializeField] Enemy enemyDefault;
+    [SerializeField] Enemy enemyFast;
+    [SerializeField] Enemy enemyHeavy;
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +40,7 @@ public class Homebase : MonoBehaviour
     {       
         ScanForEnemies();
 
-        if (targetedEnemy)
+        if (targetedEnemy == enemyDefault)
         {
             TakeDamage();
             
@@ -65,9 +69,7 @@ public class Homebase : MonoBehaviour
     {
         if (targetedEnemy != null)
         {
-
-
-            currentHomebaseHealth -= incomingEnemyDamage * enemiesInRange.Count;
+           currentHomebaseHealth -= incomingEnemyDamage * enemiesInRange.Count;
 
            healthBar.UpdateHomebaseHealthBar(currentHomebaseHealth, homebaseHealth);
 

@@ -48,10 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 237fa5461b38bfd44b43b2038bd5e815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3
   enemyPath: {fileID: 0}
   hitTarget: {fileID: 5151681444062703841}
-  maxHealth: 10
+  maxHealth: 15
   healthBar: {fileID: 691500355530139849}
 --- !u!136 &99367023899445291
 CapsuleCollider:

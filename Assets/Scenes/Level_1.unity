@@ -9737,7 +9737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e32c0e6709710dd439d8dacec26e80e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  homebaseHealth: 20
+  homebaseHealth: 100
   incomingEnemyDamage: 10
   healthBar: {fileID: 239838335}
   damageTakingTimer: 0
@@ -9748,6 +9748,12 @@ MonoBehaviour:
   colliders: []
   enemiesInRange: []
   targetedEnemy: {fileID: 0}
+  enemyDefault: {fileID: 6206755630489023651, guid: 1d88f7958a3da0e40a627bbd3d27857d,
+    type: 3}
+  enemyFast: {fileID: 6206755630489023651, guid: fd7517dccc2692140ba3f77cc2dbfecc,
+    type: 3}
+  enemyHeavy: {fileID: 6206755630489023651, guid: d3ef5ca093f5da74294b3ad6125ed03f,
+    type: 3}
 --- !u!1 &2019050263
 GameObject:
   m_ObjectHideFlags: 0

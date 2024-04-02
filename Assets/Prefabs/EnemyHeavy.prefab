@@ -52,7 +52,7 @@ MonoBehaviour:
   speed: 2
   enemyPath: {fileID: 0}
   hitTarget: {fileID: 8375444767571967219}
-  maxHealth: 10
+  maxHealth: 25
   healthBar: {fileID: 5944981697809235920}
 --- !u!65 &5712189260057213201
 BoxCollider:
