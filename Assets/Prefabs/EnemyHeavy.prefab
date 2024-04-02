@@ -54,6 +54,7 @@ MonoBehaviour:
   hitTarget: {fileID: 8375444767571967219}
   maxHealth: 25
   healthBar: {fileID: 5944981697809235920}
+  enemyDamage: 7.5
 --- !u!65 &5712189260057213201
 BoxCollider:
   m_ObjectHideFlags: 0

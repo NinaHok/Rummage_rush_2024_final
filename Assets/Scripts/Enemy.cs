@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    
+    //speed
     [SerializeField] float speed = 5.0f;
 
     // get reference to the road
@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] float maxHealth = 10.0f;
     private float currentHealth;
     [SerializeField] HealthBar healthBar;
+
+
 
     // remember where to go
     private int currentTargetWaypoint = 0;
