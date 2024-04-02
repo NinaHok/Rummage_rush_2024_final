@@ -8,7 +8,7 @@ public class Homebase : MonoBehaviour
 
     [SerializeField] float homebaseHealth = 100f;
     private float currentHomebaseHealth;
-    [SerializeField] float incomingEnemyDamage = 10f;
+
 
 
     [SerializeField] HomebaseHealthBar healthBar;
@@ -28,6 +28,9 @@ public class Homebase : MonoBehaviour
     [SerializeField] Enemy enemyFast;
     [SerializeField] Enemy enemyHeavy;
 
+    [SerializeField] float enemyDefaultDamage = 5f;
+    [SerializeField] float enemyFastDamage = 2f;
+    [SerializeField] float enemyHeavyDamage = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -37,14 +40,39 @@ public class Homebase : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {       
+    {
         ScanForEnemies();
 
-        if (targetedEnemy == enemyDefault)
+        foreach(Enemy enemyDefault in enemiesInRange)
         {
-            TakeDamage();
-            
+            damageTakingTimer += Time.deltaTime;
+            if (damageTakingTimer >= damageTakingDelay)
+            {
+                damageTakingTimer = 0;
+                TakeDamage(enemyDefaultDamage);
+            }
         }
+
+        foreach(Enemy enemyFast in enemiesInRange)
+        {
+            damageTakingTimer += Time.deltaTime;
+            if (damageTakingTimer >= damageTakingDelay)
+            {
+                damageTakingTimer = 0;
+                TakeDamage(enemyFastDamage);
+            }
+        }
+
+        foreach (Enemy enemyHeavy in enemiesInRange)
+        {
+            damageTakingTimer += Time.deltaTime;
+            if (damageTakingTimer >= damageTakingDelay)
+            {
+                damageTakingTimer = 0;
+                TakeDamage(enemyHeavyDamage);
+            }
+        }
+
     }
 
 
@@ -65,11 +93,11 @@ public class Homebase : MonoBehaviour
         }
     }
 
-    public void TakeDamage()
+    public void TakeDamage(float enemyDamage)
     {
         if (targetedEnemy != null)
         {
-           currentHomebaseHealth -= incomingEnemyDamage * enemiesInRange.Count;
+           currentHomebaseHealth -= enemyDamage * enemiesInRange.Count;
 
            healthBar.UpdateHomebaseHealthBar(currentHomebaseHealth, homebaseHealth);
 

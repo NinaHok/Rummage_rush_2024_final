@@ -54,6 +54,7 @@ MonoBehaviour:
   maxHealth: 10
   healthBar: {fileID: 3132002167809668289, guid: 57a258435a8bac74483a852e86fb7964,
     type: 3}
+  enemyDamage: 2.5
 --- !u!136 &99367023899445291
 CapsuleCollider:
   m_ObjectHideFlags: 0
