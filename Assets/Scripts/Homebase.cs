@@ -7,7 +7,7 @@ public class Homebase : MonoBehaviour
 
 
     [SerializeField] float homebaseHealth = 100f;
-    private float currentHomebaseHealth;
+    public float currentHomebaseHealth;
 
 
 
@@ -42,6 +42,7 @@ public class Homebase : MonoBehaviour
     void Update()
     {
         ScanForEnemies();
+        homebaseHealthBar.UpdateHomebaseHealthBar(currentHomebaseHealth, homebaseHealth);
 
         foreach(Enemy enemyDefault in enemiesInRange)
         {
@@ -97,8 +98,7 @@ public class Homebase : MonoBehaviour
     {
         if (targetedEnemy != null)
         {
-           currentHomebaseHealth -= enemyDamage * enemiesInRange.Count;
-
+           currentHomebaseHealth -= enemyDamage;
 
             if(currentHomebaseHealth <= 0)
             {
