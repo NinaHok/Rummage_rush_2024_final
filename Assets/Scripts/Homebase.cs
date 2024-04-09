@@ -11,7 +11,7 @@ public class Homebase : MonoBehaviour
 
 
 
-    [SerializeField] HomebaseHealthBar healthBar;
+    [SerializeField] HomebaseHealthBar homebaseHealthBar;
 
 
     //Timers
@@ -99,7 +99,7 @@ public class Homebase : MonoBehaviour
         {
            currentHomebaseHealth -= enemyDamage * enemiesInRange.Count;
 
-           healthBar.UpdateHomebaseHealthBar(currentHomebaseHealth, homebaseHealth);
+           homebaseHealthBar.UpdateHomebaseHealthBar(currentHomebaseHealth, homebaseHealth);
 
 
             if(currentHomebaseHealth <= 0)
