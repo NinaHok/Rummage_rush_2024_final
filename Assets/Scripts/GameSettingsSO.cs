@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -7,13 +8,6 @@ using UnityEngine;
 public class GameSettingsSO : ScriptableObject
 {
 
-    public int money = 50;
-
-    public void UpdateMoney(int towerCost,int moneyLeft)
-    {
-        moneyLeft = money - towerCost;
-        moneyTextObject.text = $"x {moneyLeft}";
-    }
-
+    public float money = 50f;
 
 }

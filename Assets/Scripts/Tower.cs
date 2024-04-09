@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    [SerializeField] public float towerCost = 25f;
 
     [SerializeField] float range = 3.0f;
     [SerializeField] Projectile projectile;

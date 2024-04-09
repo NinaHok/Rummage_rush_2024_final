@@ -99,8 +99,6 @@ public class Homebase : MonoBehaviour
         {
            currentHomebaseHealth -= enemyDamage * enemiesInRange.Count;
 
-           homebaseHealthBar.UpdateHomebaseHealthBar(currentHomebaseHealth, homebaseHealth);
-
 
             if(currentHomebaseHealth <= 0)
             {

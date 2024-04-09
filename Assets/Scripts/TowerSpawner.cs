@@ -27,6 +27,9 @@ public class TowerSpawner : MonoBehaviour
 
     private Vector3 mousePosition;
 
+    [SerializeField] GameSettingsSO gameSettings;
+    [SerializeField] HUDmanager hudManager;
+
     private void Awake()
     {
         // Intial setup
@@ -103,6 +106,7 @@ public class TowerSpawner : MonoBehaviour
     {
         towerMarker = Instantiate(newTower, mousePosition, Quaternion.identity);
         spawnerIsActive = true;
+       
     } 
 
 
