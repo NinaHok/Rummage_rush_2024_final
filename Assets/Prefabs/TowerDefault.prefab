@@ -209,8 +209,7 @@ MonoBehaviour:
   colliders: []
   enemiesInRange: []
   targetedEnemy: {fileID: 0}
-  healthBar: {fileID: 3132002167809668289, guid: 052ca9b7a3578494ea9f409ab3fd8143,
-    type: 3}
+  towerHealthBar: {fileID: 4588933498854932357}
 --- !u!64 &647524562448261106
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -241,6 +240,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3793548733189002581}
     m_Modifications:
+    - target: {fileID: 4146481813835328687, guid: 052ca9b7a3578494ea9f409ab3fd8143,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.4321378
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146481813835328687, guid: 052ca9b7a3578494ea9f409ab3fd8143,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146481813835328687, guid: 052ca9b7a3578494ea9f409ab3fd8143,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.548117
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146481813835328687, guid: 052ca9b7a3578494ea9f409ab3fd8143,
+        type: 3}
+      propertyPath: m_FillOrigin
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4547607251495526195, guid: 052ca9b7a3578494ea9f409ab3fd8143,
         type: 3}
       propertyPath: m_Pivot.x
@@ -377,3 +396,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 73058062784342685}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4588933498854932357 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4707203479999982312, guid: 052ca9b7a3578494ea9f409ab3fd8143,
+    type: 3}
+  m_PrefabInstance: {fileID: 73058062784342685}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6ffe152979950c4a80a729e7df98859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

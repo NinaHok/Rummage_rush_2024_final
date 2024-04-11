@@ -63,6 +63,7 @@ public class Enemy : MonoBehaviour
 
             ScanForTower();
 
+
             if (targetedTower != null)
             {
                 transform.LookAt(targetedTower.transform.position);
@@ -79,7 +80,7 @@ public class Enemy : MonoBehaviour
                     {
                         damageDealingTimer = 0;
                         targetedTower.TakeDamage(enemyDefaultDamage);
-                        towerHealthBar.UpdateTowerHealthBar(targetedTower.currentTowerHealth, targetedTower.towerHealth);
+
                      
                     }
 

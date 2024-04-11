@@ -27,7 +27,7 @@ public class Tower : MonoBehaviour
     [SerializeField] List<Enemy> enemiesInRange;
     [SerializeField] Enemy targetedEnemy;
 
-    [SerializeField] HealthBar healthBar;
+    [SerializeField] TowerHealthBar towerHealthBar;
 
     private void Awake()
     {
@@ -42,10 +42,12 @@ public class Tower : MonoBehaviour
         
         if (towerIsActive)
         {
-        
-          // == SCANNING PART ==
 
-          scanningTimer += Time.deltaTime;
+            towerHealthBar.UpdateTowerHealthBar(currentTowerHealth, towerHealth);
+
+            // == SCANNING PART ==
+
+            scanningTimer += Time.deltaTime;
           if (scanningTimer >= scanningDelay)
           {
             scanningTimer = 0;   // reset scanning timer
