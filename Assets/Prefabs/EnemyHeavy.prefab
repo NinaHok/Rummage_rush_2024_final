@@ -54,7 +54,12 @@ MonoBehaviour:
   hitTarget: {fileID: 8375444767571967219}
   maxHealth: 25
   healthBar: {fileID: 5944981697809235920}
-  enemyDamage: 7.5
+  towerLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  colliders: []
+  towersInRange: []
+  targetedTower: {fileID: 0}
 --- !u!65 &5712189260057213201
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -28,9 +28,7 @@ public class Homebase : MonoBehaviour
     [SerializeField] Enemy enemyFast;
     [SerializeField] Enemy enemyHeavy;
 
-    [SerializeField] float enemyDefaultDamage = 5f;
-    [SerializeField] float enemyFastDamage = 2f;
-    [SerializeField] float enemyHeavyDamage = 10f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +48,7 @@ public class Homebase : MonoBehaviour
             if (damageTakingTimer >= damageTakingDelay)
             {
                 damageTakingTimer = 0;
-                TakeDamage(enemyDefaultDamage);
+                TakeDamage(enemyDefault.enemyDefaultDamage);
             }
         }
 
@@ -60,7 +58,7 @@ public class Homebase : MonoBehaviour
             if (damageTakingTimer >= damageTakingDelay)
             {
                 damageTakingTimer = 0;
-                TakeDamage(enemyFastDamage);
+                TakeDamage(enemyFast.enemyFastDamage);
             }
         }
 
@@ -70,7 +68,7 @@ public class Homebase : MonoBehaviour
             if (damageTakingTimer >= damageTakingDelay)
             {
                 damageTakingTimer = 0;
-                TakeDamage(enemyHeavyDamage);
+                TakeDamage(enemyHeavy.enemyHeavyDamage);
             }
         }
 

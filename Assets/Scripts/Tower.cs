@@ -5,6 +5,8 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     [SerializeField] public float towerCost = 25f;
+    [SerializeField] public float towerHealth = 80f;
+    public float currentTowerHealth;
 
     [SerializeField] float range = 3.0f;
     [SerializeField] Projectile projectile;
@@ -25,10 +27,13 @@ public class Tower : MonoBehaviour
     [SerializeField] List<Enemy> enemiesInRange;
     [SerializeField] Enemy targetedEnemy;
 
+    [SerializeField] HealthBar healthBar;
+
     private void Awake()
     {
         // initial setup
         towerIsActive = false;
+        currentTowerHealth = towerHealth;
     }
 
 
@@ -60,6 +65,10 @@ public class Tower : MonoBehaviour
             firingTimer = 0f;
             Fire();            // call the fire function
           }
+
+
+
+
 
         }
     }
@@ -114,6 +123,19 @@ public class Tower : MonoBehaviour
     public void activateTower()
     {
         towerIsActive = true;
+    }
+
+    public void TakeDamage(float enemyDamage)
+    {
+        {
+            currentTowerHealth -= enemyDamage;
+
+            if (currentTowerHealth <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+
+        }
     }
 
 

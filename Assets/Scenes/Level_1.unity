@@ -10824,7 +10824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e32c0e6709710dd439d8dacec26e80e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  homebaseHealth: 100
+  homebaseHealth: 600
   currentHomebaseHealth: 0
   homebaseHealthBar: {fileID: 239838335}
   damageTakingTimer: 0
@@ -10841,9 +10841,6 @@ MonoBehaviour:
     type: 3}
   enemyHeavy: {fileID: 6206755630489023651, guid: d3ef5ca093f5da74294b3ad6125ed03f,
     type: 3}
-  enemyDefaultDamage: 5
-  enemyFastDamage: 2
-  enemyHeavyDamage: 10
 --- !u!1 &2019050263
 GameObject:
   m_ObjectHideFlags: 0
