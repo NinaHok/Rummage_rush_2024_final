@@ -41,10 +41,16 @@ public class TowerSpawner : MonoBehaviour
     {
 
         // create a tower with a button press
-        if (Input.GetKeyUp(KeyCode.T) && !spawnerIsActive)
+        if (Input.GetKeyUp(KeyCode.T) && !spawnerIsActive && gameSettings.money > 0)
         {
             towerIndicator = Instantiate(defaultTower, GetMousePosition(), Quaternion.identity);
             spawnerIsActive = true;
+            hudManager.UpdateMoneyText();
+        }
+
+        if (Input.GetKeyUp(KeyCode.T) && !spawnerIsActive && gameSettings.money == 0)
+        {
+            Debug.Log($"Not enough money!");
         }
 
         // place the tower
