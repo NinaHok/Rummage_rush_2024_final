@@ -2504,7 +2504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyTextObject: {fileID: 1084072307}
-  gameSettings: {fileID: 0}
+  gameSettings: {fileID: 11400000, guid: d7d743529fc20304a828928101bf520b, type: 2}
   tower: {fileID: 7792919146501810276, guid: d033d99a0c4bb974399bd392688da662, type: 3}
 --- !u!1 &384843245
 GameObject:
@@ -6742,8 +6742,8 @@ MonoBehaviour:
   defaultTower: {fileID: 7792919146501810276, guid: d033d99a0c4bb974399bd392688da662,
     type: 3}
   tilemap: {fileID: 1673106500}
-  gameSettings: {fileID: 0}
-  hudManager: {fileID: 0}
+  gameSettings: {fileID: 11400000, guid: d7d743529fc20304a828928101bf520b, type: 2}
+  hudManager: {fileID: 358610930}
 --- !u!43 &1141247690
 Mesh:
   m_ObjectHideFlags: 0

@@ -10,4 +10,7 @@ public class GameSettingsSO : ScriptableObject
 
     public float money = 50f;
 
+    [SerializeField] Tower tower;
+
+
 }

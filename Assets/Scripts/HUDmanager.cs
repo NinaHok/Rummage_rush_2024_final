@@ -11,10 +11,10 @@ public class HUDmanager : MonoBehaviour
     [SerializeField] Tower tower;
 
 
-    public void UpdateMoneyText(float moneyLeft)
+    public void UpdateMoneyText()
     {
-        moneyLeft = gameSettings.money - tower.towerCost;
-        moneyTextObject.text = $"x peepeepoopoo";
+        gameSettings.money = gameSettings.money - tower.towerCost;    
+        moneyTextObject.text = $"x {gameSettings.money}";
     }
 
 }
