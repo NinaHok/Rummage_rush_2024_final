@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public float enemyFastDamage = 2f;
     [SerializeField] public float enemyHeavyDamage = 10f;
 
+    //damage timers
     [SerializeField] float damageDealingTimer;
     [SerializeField] float damageDealingDelay = 2f;
 
@@ -39,7 +40,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] Collider[] colliders;
     [SerializeField] List<Tower> towersInRange;
     [SerializeField] Tower targetedTower;
-    [SerializeField] TowerHealthBar targetedTowerHealthBar;
+    [SerializeField] TowerHealthBar towerHealthBar;
 
 
     // remember where to go
@@ -57,8 +58,6 @@ public class Enemy : MonoBehaviour
     {
         if (!hasReachedEnd) // hasReachedEnd == false
         {
-
-
             // block comments:    ctrl + k, ctrl + c 
             // unblock comments:  ctlr + k, ctrl + u 
 
@@ -80,10 +79,36 @@ public class Enemy : MonoBehaviour
                     {
                         damageDealingTimer = 0;
                         targetedTower.TakeDamage(enemyDefaultDamage);
-                        targetedTowerHealthBar.UpdateHealthBar(targetedTower.currentTowerHealth, targetedTower.towerHealth);
+                        towerHealthBar.UpdateTowerHealthBar(targetedTower.currentTowerHealth, targetedTower.towerHealth);
+                     
                     }
 
                 }
+
+                foreach (Collider towerFast in colliders)
+                {
+                    damageDealingTimer += Time.deltaTime;
+                    if (damageDealingTimer >= damageDealingDelay)
+                    {
+                        damageDealingTimer = 0;
+                        targetedTower.TakeDamage(enemyFastDamage);
+
+                    }
+
+                }
+
+                foreach (Collider towerHeavy in colliders)
+                {
+                    damageDealingTimer += Time.deltaTime;
+                    if (damageDealingTimer >= damageDealingDelay)
+                    {
+                        damageDealingTimer = 0;
+                        targetedTower.TakeDamage(enemyHeavyDamage);
+
+                    }
+
+                }
+
             }
         }
 
@@ -127,7 +152,6 @@ public class Enemy : MonoBehaviour
 
     public void InflictDamage(float incomingDamage)
     {
-        Debug.Log($"About to take damage: {currentHealth} - {incomingDamage}");
 
         currentHealth -= incomingDamage;
 

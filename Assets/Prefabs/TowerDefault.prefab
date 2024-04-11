@@ -156,7 +156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3793548733189002581}
   - component: {fileID: 7792919146501810276}
-  - component: {fileID: -3003558106483848187}
+  - component: {fileID: 647524562448261106}
   m_Layer: 9
   m_Name: TowerDefault
   m_TagString: Untagged
@@ -211,8 +211,8 @@ MonoBehaviour:
   targetedEnemy: {fileID: 0}
   healthBar: {fileID: 3132002167809668289, guid: 052ca9b7a3578494ea9f409ab3fd8143,
     type: 3}
---- !u!136 &-3003558106483848187
-CapsuleCollider:
+--- !u!64 &647524562448261106
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -229,11 +229,10 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.3087083
-  m_Height: 1.3588352
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.34800792, z: 0}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &73058062784342685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -361,6 +360,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TowerHealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055483976840748610, guid: 052ca9b7a3578494ea9f409ab3fd8143,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

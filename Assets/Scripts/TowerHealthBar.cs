@@ -8,7 +8,7 @@ public class TowerHealthBar : MonoBehaviour
     // foreground UI element
     [SerializeField] Image towerHealthBarSprite;
 
-    public void UpdateHealthBar(float currentTowerHealth, float towerHealth)
+    public void UpdateTowerHealthBar(float currentTowerHealth, float towerHealth)
     {
         towerHealthBarSprite.fillAmount = currentTowerHealth / towerHealth;
     }
