@@ -12,7 +12,7 @@ public class Tower : MonoBehaviour
     [SerializeField] Projectile projectile;
     [SerializeField] Transform firingPoint;
 
-    private bool towerIsActive;
+    public bool towerIsActive;
 
     // Timers
     [SerializeField] float firingTimer;

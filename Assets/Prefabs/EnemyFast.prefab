@@ -67,10 +67,8 @@ MonoBehaviour:
     m_Bits: 512
   colliders: []
   towersInRange: []
-  targetedTower: {fileID: 7792919146501810276, guid: d033d99a0c4bb974399bd392688da662,
-    type: 3}
-  towerHealthBar: {fileID: -4707203479999982312, guid: 052ca9b7a3578494ea9f409ab3fd8143,
-    type: 3}
+  targetedTower: {fileID: 0}
+  towerHealthBar: {fileID: 0}
 --- !u!136 &99367023899445291
 CapsuleCollider:
   m_ObjectHideFlags: 0
