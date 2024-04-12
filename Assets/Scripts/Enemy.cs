@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
             ScanForTower();
 
 
-            if (targetedTower != null)
+            if (targetedTower != null && targetedTower.towerIsActive)
             {
                 transform.LookAt(targetedTower.transform.position);
                 transform.position = Vector3.MoveTowards(
@@ -81,7 +81,7 @@ public class Enemy : MonoBehaviour
                         damageDealingTimer = 0;
                         targetedTower.TakeDamage(enemyDefaultDamage);
 
-                     
+
                     }
 
                 }
@@ -111,34 +111,35 @@ public class Enemy : MonoBehaviour
                 }
 
             }
-        }
 
-        
-        {
 
-            // look at the destination
-            transform.LookAt(enemyPath.GetWaypoint(currentTargetWaypoint));
 
-            // move to the destination
-            transform.position = Vector3.MoveTowards(
-            transform.position,                                    // where from
-            enemyPath.GetWaypoint(currentTargetWaypoint).position, // where to
-            speed * Time.deltaTime                                 // how fast
-            );
-
-            // are we close enough to the destination?
-            if (Vector3.Distance(transform.position,
-            enemyPath.GetWaypoint(currentTargetWaypoint).position) < 0.2f)
             {
-                // increment the current target waypoint
-                currentTargetWaypoint++;
 
-                // have we surpassed the last waypoint?
-                if (currentTargetWaypoint >= enemyPath.GetNumberOfWaypoints())
+                // look at the destination
+                transform.LookAt(enemyPath.GetWaypoint(currentTargetWaypoint));
+
+                // move to the destination
+                transform.position = Vector3.MoveTowards(
+                transform.position,                                    // where from
+                enemyPath.GetWaypoint(currentTargetWaypoint).position, // where to
+                speed * Time.deltaTime                                 // how fast
+                );
+
+                // are we close enough to the destination?
+                if (Vector3.Distance(transform.position,
+                enemyPath.GetWaypoint(currentTargetWaypoint).position) < 0.1f)
                 {
-                    hasReachedEnd = true;  // have we reached the end of the road? 
-                }
+                    // increment the current target waypoint
+                    currentTargetWaypoint++;
 
+                    // have we surpassed the last waypoint?
+                    if (currentTargetWaypoint >= enemyPath.GetNumberOfWaypoints())
+                    {
+                        hasReachedEnd = true;  // have we reached the end of the road? 
+                    }
+
+                }
             }
         }
     }
