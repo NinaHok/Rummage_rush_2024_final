@@ -5,12 +5,11 @@ using UnityEngine;
 public class Homebase : MonoBehaviour
 {
 
+    [SerializeField] EventManagerSO eventManager;
+
 
     [SerializeField] float homebaseHealth = 100f;
     public float currentHomebaseHealth;
-
-
-
     [SerializeField] HomebaseHealthBar homebaseHealthBar;
 
 
@@ -101,6 +100,7 @@ public class Homebase : MonoBehaviour
             if(currentHomebaseHealth <= 0)
             {
                 Debug.Log($"Health = 0. Game over");
+                eventManager.GameOver();
             }
 
         }
