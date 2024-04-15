@@ -50,12 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  enemyDefault: {fileID: 0}
-  enemyFast: {fileID: 0}
-  enemyHeavy: {fileID: 0}
-  enemyDefaultDamage: 5
-  enemyFastDamage: 2
-  enemyHeavyDamage: 10
+  enemyDamage: 10
   damageDealingTimer: 0
   damageDealingDelay: 2
   enemyPath: {fileID: 0}
