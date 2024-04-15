@@ -21,11 +21,6 @@ public class Homebase : MonoBehaviour
     [SerializeField] LayerMask enemyLayers;
     [SerializeField] Collider[] colliders;
     [SerializeField] List<Enemy> enemiesInRange;
-    [SerializeField] Enemy targetedEnemy;
-
-    [SerializeField] Enemy enemyDefault;
-    [SerializeField] Enemy enemyFast;
-    [SerializeField] Enemy enemyHeavy;
 
 
 
@@ -41,33 +36,13 @@ public class Homebase : MonoBehaviour
         ScanForEnemies();
         homebaseHealthBar.UpdateHomebaseHealthBar(currentHomebaseHealth, homebaseHealth);
 
-        foreach(Enemy enemyDefault in enemiesInRange)
+        foreach(Enemy enemy in enemiesInRange)
         {
             damageTakingTimer += Time.deltaTime;
             if (damageTakingTimer >= damageTakingDelay)
             {
                 damageTakingTimer = 0;
-                TakeDamage(enemyDefault.enemyDefaultDamage);
-            }
-        }
-
-        foreach(Enemy enemyFast in enemiesInRange)
-        {
-            damageTakingTimer += Time.deltaTime;
-            if (damageTakingTimer >= damageTakingDelay)
-            {
-                damageTakingTimer = 0;
-                TakeDamage(enemyFast.enemyFastDamage);
-            }
-        }
-
-        foreach (Enemy enemyHeavy in enemiesInRange)
-        {
-            damageTakingTimer += Time.deltaTime;
-            if (damageTakingTimer >= damageTakingDelay)
-            {
-                damageTakingTimer = 0;
-                TakeDamage(enemyHeavy.enemyHeavyDamage);
+                TakeDamage(enemy.enemyDamage);
             }
         }
 
@@ -85,15 +60,11 @@ public class Homebase : MonoBehaviour
             enemiesInRange.Add(collider.GetComponent<Enemy>());
         }
 
-        if (enemiesInRange.Count !=0)
-        {
-            targetedEnemy = enemiesInRange[0];
-        }
     }
 
     public void TakeDamage(float enemyDamage)
     {
-        if (targetedEnemy != null)
+        if (enemiesInRange.Count > 0)
         {
            currentHomebaseHealth -= enemyDamage;
 

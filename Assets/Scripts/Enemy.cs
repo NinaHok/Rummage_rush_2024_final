@@ -11,14 +11,8 @@ public class Enemy : MonoBehaviour
     //range
     float range = 2.0f;
 
-    [SerializeField] Enemy enemyDefault;
-    [SerializeField] Enemy enemyFast;
-    [SerializeField] Enemy enemyHeavy;
-
     //damage
-    [SerializeField] public float enemyDefaultDamage = 5f;
-    [SerializeField] public float enemyFastDamage = 2f;
-    [SerializeField] public float enemyHeavyDamage = 10f;
+    [SerializeField] public float enemyDamage = 5f;
 
     //damage timers
     [SerializeField] float damageDealingTimer;
@@ -79,32 +73,8 @@ public class Enemy : MonoBehaviour
                     if (damageDealingTimer >= damageDealingDelay)
                     {
                         damageDealingTimer = 0;
-                        targetedTower.TakeDamage(enemyDefaultDamage);
+                        targetedTower.TakeDamage(enemyDamage);
 
-
-                    }
-
-                }
-
-                foreach (Collider towerFast in colliders)
-                {
-                    damageDealingTimer += Time.deltaTime;
-                    if (damageDealingTimer >= damageDealingDelay)
-                    {
-                        damageDealingTimer = 0;
-                        targetedTower.TakeDamage(enemyFastDamage);
-
-                    }
-
-                }
-
-                foreach (Collider towerHeavy in colliders)
-                {
-                    damageDealingTimer += Time.deltaTime;
-                    if (damageDealingTimer >= damageDealingDelay)
-                    {
-                        damageDealingTimer = 0;
-                        targetedTower.TakeDamage(enemyHeavyDamage);
 
                     }
 

@@ -10573,7 +10573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventManager: {fileID: 11400000, guid: 460f86889e4558c4794133662cbd2532, type: 2}
-  homebaseHealth: 600
+  homebaseHealth: 100
   currentHomebaseHealth: 0
   homebaseHealthBar: {fileID: 239838335}
   damageTakingTimer: 0
@@ -10583,13 +10583,6 @@ MonoBehaviour:
     m_Bits: 64
   colliders: []
   enemiesInRange: []
-  targetedEnemy: {fileID: 0}
-  enemyDefault: {fileID: 6206755630489023651, guid: 1d88f7958a3da0e40a627bbd3d27857d,
-    type: 3}
-  enemyFast: {fileID: 6206755630489023651, guid: fd7517dccc2692140ba3f77cc2dbfecc,
-    type: 3}
-  enemyHeavy: {fileID: 6206755630489023651, guid: d3ef5ca093f5da74294b3ad6125ed03f,
-    type: 3}
 --- !u!1 &2019050263
 GameObject:
   m_ObjectHideFlags: 0
