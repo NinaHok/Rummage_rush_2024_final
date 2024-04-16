@@ -22,6 +22,8 @@ public class Homebase : MonoBehaviour
     [SerializeField] Collider[] colliders;
     [SerializeField] List<Enemy> enemiesInRange;
 
+    [SerializeField] GameSettingsSO gameSettings;
+
 
 
     // Start is called before the first frame update
@@ -33,16 +35,20 @@ public class Homebase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ScanForEnemies();
-        homebaseHealthBar.UpdateHomebaseHealthBar(currentHomebaseHealth, homebaseHealth);
-
-        foreach(Enemy enemy in enemiesInRange)
+        if (gameSettings.currentGameState == GameStates.inGame)
         {
-            damageTakingTimer += Time.deltaTime;
-            if (damageTakingTimer >= damageTakingDelay)
+
+            ScanForEnemies();
+            homebaseHealthBar.UpdateHomebaseHealthBar(currentHomebaseHealth, homebaseHealth);
+
+            foreach (Enemy enemy in enemiesInRange)
             {
-                damageTakingTimer = 0;
-                TakeDamage(enemy.enemyDamage);
+                damageTakingTimer += Time.deltaTime;
+                if (damageTakingTimer >= damageTakingDelay)
+                {
+                    damageTakingTimer = 0;
+                    TakeDamage(enemy.enemyDamage);
+                }
             }
         }
 

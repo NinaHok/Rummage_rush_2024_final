@@ -8,11 +8,24 @@ using UnityEngine;
 public class EventManagerSO : ScriptableObject
 {
 
-    public event Action OnGameOver;
+    public event Action onGameOver;
+
+    public event Action onPauseGame;
+    public event Action onResumeGame;
+
+    public void PauseGame()
+    {
+        onPauseGame?.Invoke();
+    }
+
+    public void ResumeGame()
+    {
+        onResumeGame?.Invoke();
+    }
 
     public void GameOver()
     {
-        OnGameOver?.Invoke();
+        onGameOver?.Invoke();
     }
 
 

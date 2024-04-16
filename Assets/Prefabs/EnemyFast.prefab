@@ -49,12 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  enemyDefault: {fileID: 0}
-  enemyFast: {fileID: 0}
-  enemyHeavy: {fileID: 0}
-  enemyDefaultDamage: 5
-  enemyFastDamage: 2
-  enemyHeavyDamage: 10
+  enemyDamage: 5
   damageDealingTimer: 0
   damageDealingDelay: 2
   enemyPath: {fileID: 0}
@@ -69,6 +64,7 @@ MonoBehaviour:
   towersInRange: []
   targetedTower: {fileID: 0}
   towerHealthBar: {fileID: 0}
+  gameSettings: {fileID: 11400000, guid: d7d743529fc20304a828928101bf520b, type: 2}
 --- !u!136 &99367023899445291
 CapsuleCollider:
   m_ObjectHideFlags: 0
