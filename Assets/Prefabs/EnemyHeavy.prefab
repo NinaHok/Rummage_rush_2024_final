@@ -64,6 +64,7 @@ MonoBehaviour:
   towersInRange: []
   targetedTower: {fileID: 0}
   towerHealthBar: {fileID: 0}
+  gameSettings: {fileID: 11400000, guid: d7d743529fc20304a828928101bf520b, type: 2}
 --- !u!65 &5712189260057213201
 BoxCollider:
   m_ObjectHideFlags: 0

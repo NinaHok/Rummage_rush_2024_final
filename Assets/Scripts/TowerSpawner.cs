@@ -53,49 +53,53 @@ public class TowerSpawner : MonoBehaviour
 
     private void Update()
     {
+        if (gameSettings.currentGameState == GameStates.inGame)
+        {
 
-        // create a tower with a button press
-        if (Input.GetKeyUp(KeyCode.Alpha1) && !spawnerIsActive && gameSettings.money > 0)
-        {
-            StartTowerPlacement(towerDefault);
-        }
-        if (Input.GetKeyUp(KeyCode.Alpha2) && !spawnerIsActive && gameSettings.money > 0)
-        {
-            StartTowerPlacement(towerFast);
-        }
-        if (Input.GetKeyUp(KeyCode.Alpha3) && !spawnerIsActive && gameSettings.money > 0)
-        {
-            StartTowerPlacement(towerHeavy);
-        }
+
+            // create a tower with a button press
+            if (Input.GetKeyUp(KeyCode.Alpha1) && !spawnerIsActive && gameSettings.money > 0)
+            {
+                StartTowerPlacement(towerDefault);
+            }
+            if (Input.GetKeyUp(KeyCode.Alpha2) && !spawnerIsActive && gameSettings.money > 0)
+            {
+                StartTowerPlacement(towerFast);
+            }
+            if (Input.GetKeyUp(KeyCode.Alpha3) && !spawnerIsActive && gameSettings.money > 0)
+            {
+                StartTowerPlacement(towerHeavy);
+            }
 
             if (Input.GetKeyUp(KeyCode.Alpha1) && !spawnerIsActive && gameSettings.money == 0)
-        {
-            Debug.Log($"Not enough money!");
-        }
-
-        // place the tower
-        if (spawnerIsActive)
-        {
-            towerIndicator.transform.position = GetMousePosition();
-
-            // drop the tower
-            if (Input.GetMouseButton(0))
             {
-                towerIndicator.activateTower();
-                towerIndicator = null;
-                spawnerIsActive = false;
+                Debug.Log($"Not enough money!");
             }
 
-            // cancel placement
-            else if (Input.GetMouseButton(1))
+            // place the tower
+            if (spawnerIsActive)
             {
-                Destroy(towerIndicator.gameObject);
-                spawnerIsActive = false;
+                towerIndicator.transform.position = GetMousePosition();
+
+                // drop the tower
+                if (Input.GetMouseButton(0))
+                {
+                    towerIndicator.activateTower();
+                    towerIndicator = null;
+                    spawnerIsActive = false;
+                }
+
+                // cancel placement
+                else if (Input.GetMouseButton(1))
+                {
+                    Destroy(towerIndicator.gameObject);
+                    spawnerIsActive = false;
+                }
+
+
             }
 
-
         }
-
 
     }
 

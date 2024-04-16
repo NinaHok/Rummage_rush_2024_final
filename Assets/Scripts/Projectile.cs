@@ -8,6 +8,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] float speed = 10f;
     [SerializeField] float damage = 5f;
 
+    [SerializeField] GameSettingsSO gameSettings;
+
     private Rigidbody rb;
     private Enemy targetedEnemy;
     private Vector3 lastDirection;
@@ -26,17 +28,21 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        if (targetedEnemy) // if the targeted enemy is still alive
+        if (gameSettings.currentGameState == GameStates.inGame)
         {
-            lastDirection = (targetedEnemy.getHitTarget().position - transform.position).normalized;
-            transform.position = Vector3.MoveTowards(
-                    transform.position,
-                    targetedEnemy.getHitTarget().position, // HERE
-                    speed * Time.deltaTime);
-        }
-        else if (rb.isKinematic) // Target is gone, and Rigidbody is not yet active
-        {
-            ActivateRigidbody();
+
+            if (targetedEnemy) // if the targeted enemy is still alive
+            {
+                lastDirection = (targetedEnemy.getHitTarget().position - transform.position).normalized;
+                transform.position = Vector3.MoveTowards(
+                        transform.position,
+                        targetedEnemy.getHitTarget().position, // HERE
+                        speed * Time.deltaTime);
+            }
+            else if (rb.isKinematic) // Target is gone, and Rigidbody is not yet active
+            {
+                ActivateRigidbody();
+            }
         }
     }
 

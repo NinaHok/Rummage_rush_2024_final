@@ -11,18 +11,27 @@ public class HUDmanager : MonoBehaviour
     [SerializeField] GameSettingsSO gameSettings;
     [SerializeField] Tower tower;
     [SerializeField] GameObject gameOverScreen;
+    [SerializeField] GameObject tutorialScreen;
+    [SerializeField] GameObject pauseScreen;
 
     [SerializeField] EventManagerSO eventManager;
 
+
     private void OnEnable()
     {
-        eventManager.OnGameOver += DisplayGameOverScreen;
+        eventManager.onGameOver += DisplayGameOverScreen;
+
+        eventManager.onPauseGame += DisplayPauseScreen;
+        eventManager.onResumeGame += HidePauseScreen;
 
     }
 
     private void OnDisable()
     {
-        eventManager.OnGameOver -= DisplayGameOverScreen;
+        eventManager.onGameOver -= DisplayGameOverScreen;
+
+        eventManager.onPauseGame -= DisplayPauseScreen;
+        eventManager.onResumeGame -= HidePauseScreen;
     }
 
     public void UpdateMoneyText()
@@ -35,6 +44,31 @@ public class HUDmanager : MonoBehaviour
     public void DisplayGameOverScreen()
     {
         gameOverScreen.SetActive(true);
+        gameSettings.currentGameState = GameStates.gameOver;
     }
+
+    public void DisplayTutorial()
+    {
+        tutorialScreen.SetActive(true);
+        gameSettings.currentGameState = GameStates.inTutorial;
+    }
+
+    public void HideTutorial()
+    {
+        tutorialScreen.SetActive(false);
+        gameSettings.currentGameState = GameStates.inGame;
+
+    }
+
+    public void DisplayPauseScreen()
+    {
+        pauseScreen.SetActive(true);
+    }
+
+    public void HidePauseScreen()
+    {
+        pauseScreen.SetActive(false);
+    }
+
 }
  

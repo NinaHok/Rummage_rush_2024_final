@@ -211,6 +211,7 @@ MonoBehaviour:
   enemiesInRange: []
   targetedEnemy: {fileID: 0}
   towerHealthBar: {fileID: 4588933498854932357}
+  gameSettings: {fileID: 11400000, guid: d7d743529fc20304a828928101bf520b, type: 2}
 --- !u!65 &9046594676099576813
 BoxCollider:
   m_ObjectHideFlags: 0

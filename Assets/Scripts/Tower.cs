@@ -29,6 +29,8 @@ public class Tower : MonoBehaviour
 
     [SerializeField] TowerHealthBar towerHealthBar;
 
+    [SerializeField] GameSettingsSO gameSettings;
+
     private void Awake()
     {
         // initial setup
@@ -39,39 +41,42 @@ public class Tower : MonoBehaviour
 
     private void Update()
     {
-        
-        if (towerIsActive)
+        if (gameSettings.currentGameState == GameStates.inGame)
         {
 
-            towerHealthBar.UpdateTowerHealthBar(currentTowerHealth, towerHealth);
+            if (towerIsActive)
+            {
 
-            // == SCANNING PART ==
+                towerHealthBar.UpdateTowerHealthBar(currentTowerHealth, towerHealth);
 
-            scanningTimer += Time.deltaTime;
-          if (scanningTimer >= scanningDelay)
-          {
-            scanningTimer = 0;   // reset scanning timer
-            ScanForEnemies();    // call the scan function
-          }
+                // == SCANNING PART ==
 
-
-          // == FIRING PART ==
-
-          // if there's a targeted enemy, then increment the timer every frame
-          if(targetedEnemy)
-            firingTimer += Time.deltaTime;
-
-          // if we have reached the firingDelay, then reset the timer and fire
-          if(firingTimer >= firingDelay)
-          {
-            firingTimer = 0f;
-            Fire();            // call the fire function
-          }
+                scanningTimer += Time.deltaTime;
+                if (scanningTimer >= scanningDelay)
+                {
+                    scanningTimer = 0;   // reset scanning timer
+                    ScanForEnemies();    // call the scan function
+                }
 
 
+                // == FIRING PART ==
+
+                // if there's a targeted enemy, then increment the timer every frame
+                if (targetedEnemy)
+                    firingTimer += Time.deltaTime;
+
+                // if we have reached the firingDelay, then reset the timer and fire
+                if (firingTimer >= firingDelay)
+                {
+                    firingTimer = 0f;
+                    Fire();            // call the fire function
+                }
 
 
 
+
+
+            }
         }
     }
 
