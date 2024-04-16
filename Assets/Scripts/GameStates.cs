@@ -7,6 +7,7 @@ public enum GameStates
     inGame,
     paused,
     inTutorial,
+    showingControls,
     victory,
     gameOver
 }
