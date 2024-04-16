@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] HUDmanager hudManager;
     [SerializeField] EventManagerSO eventManager;
 
+
+
     private void Awake()
     {
 
@@ -57,5 +59,19 @@ public class LevelManager : MonoBehaviour
                 Time.timeScale = 1f;
             }
         }
+
+        else if (gameSettings.currentGameState == GameStates.showingControls)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                hudManager.HideControls();
+                eventManager.ResumeGame();
+                gameSettings.currentGameState = GameStates.inGame;
+                Time.timeScale = 1f;
+            }
+        }
+
+
+
     }
 }
