@@ -9,13 +9,22 @@ public class EnemySpawner : MonoBehaviour
      */
 
     // == PATHS ==
-    [SerializeField] EnemyPath enemyPathA;
-    [SerializeField] EnemyPath enemyPathB;
+    //[SerializeField] EnemyPath enemyPathA;
+    //[SerializeField] EnemyPath enemyPathB;
+
+    [SerializeField] List<EnemyPath> paths;
+
 
     // == ENEMIES ==
     [SerializeField] Enemy enemyDefault;
     [SerializeField] Enemy enemyFast;
     [SerializeField] Enemy enemyHeavy;
+
+    // == SETTINGS ==
+    [SerializeField] int wave01Enemies = 8;
+
+    [SerializeField] float randomDelayMin = .5f;
+    [SerializeField] float randomDelayMax = 4.0f;
 
 
     private void SpawnEnemy(Enemy enemyToSpawn, EnemyPath chosenPath)
@@ -24,34 +33,41 @@ public class EnemySpawner : MonoBehaviour
         Instantiate(enemyToSpawn, transform.position, Quaternion.identity).SetEnemyPath(chosenPath);
     }
 
-    private void Awake()
+    private void Start()
     {
-        StartCoroutine(Wave01()); // start wave 01 when the game starts 
+        StartCoroutine(Wave01()); 
     }
 
 
     IEnumerator Wave01()
     {
-        yield return new WaitForSeconds(2);     // wait for 2 seconds
-        SpawnEnemy(enemyDefault, enemyPathA);    // then spawn
 
-        yield return new WaitForSeconds(2);     // wait for 2 seconds
-        SpawnEnemy(enemyDefault, enemyPathA);    // then spawn
+        //for(int i = 0; i<wave01Enemies; i++)
+        //{
+        //    SpawnEnemy(enemyDefault, paths[(int)Random.Range(0, paths.Count)]);
+        //    yield return new WaitForSeconds(Random.Range(randomDelayMin, randomDelayMax));
+        //}
 
-        yield return new WaitForSeconds(2);     // wait for 2 seconds
-        SpawnEnemy(enemyFast, enemyPathB);       // then spawn
+        yield return new WaitForSeconds(2);                                     // wait for 2 seconds
+        SpawnEnemy(enemyDefault, paths[(int)Random.Range(0, paths.Count)]);    // then spawn
 
-        yield return new WaitForSeconds(0.5f);  // wait for 0.5 seconds
-        SpawnEnemy(enemyDefault, enemyPathA);    // then spawn
+        yield return new WaitForSeconds(2);     
+        SpawnEnemy(enemyDefault, paths[(int)Random.Range(0, paths.Count)]);    
 
-        yield return new WaitForSeconds(2);     // wait for 2 seconds
-        SpawnEnemy(enemyDefault, enemyPathA);    // then spawn
+        yield return new WaitForSeconds(2);     
+        SpawnEnemy(enemyFast, paths[(int)Random.Range(0, paths.Count)]);      
 
-        yield return new WaitForSeconds(4);     // wait for 2 seconds
-        SpawnEnemy(enemyHeavy, enemyPathA);      // then spawn
+        yield return new WaitForSeconds(0.5f); 
+        SpawnEnemy(enemyDefault, paths[(int)Random.Range(0, paths.Count)]);   
 
-        yield return new WaitForSeconds(2);     // wait for 2 seconds
-        SpawnEnemy(enemyHeavy, enemyPathB);      // then spawn
+        yield return new WaitForSeconds(2);     
+        SpawnEnemy(enemyDefault, paths[(int)Random.Range(0, paths.Count)]);   
+
+        yield return new WaitForSeconds(4);     
+        SpawnEnemy(enemyHeavy, paths[(int)Random.Range(0, paths.Count)]);    
+
+        yield return new WaitForSeconds(2);     
+        SpawnEnemy(enemyHeavy, paths[(int)Random.Range(0, paths.Count)]);     
 
     }
 

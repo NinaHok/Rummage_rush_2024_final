@@ -124,7 +124,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c8598ea86f20479428d65a6212544c25, type: 2}
+  - {fileID: 2100000, guid: 91580443f14aea14a8321076b029deb4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 7792919146501810276}
   - component: {fileID: 9046594676099576813}
   m_Layer: 9
-  m_Name: TowerDefault
+  m_Name: TowerFast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -194,16 +194,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d0afb730421f342b28c194d6f44cc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerCost: 25
-  towerHealth: 20
+  towerCost: 15
+  towerHealth: 10
   currentTowerHealth: 0
-  range: 5
+  range: 8
   projectile: {fileID: 2355240802375707062, guid: 230b486145416cd418abc1df10fcc74c,
     type: 3}
   firingPoint: {fileID: 4779967575793675343}
   towerIsActive: 0
   firingTimer: 0
-  firingDelay: 1
+  firingDelay: 0.75
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64

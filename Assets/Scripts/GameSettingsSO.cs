@@ -12,5 +12,10 @@ public class GameSettingsSO : ScriptableObject
 
     [SerializeField] Tower tower;
 
+    public void ResetMoney()
+    {
+        money = 50f;
+    }
+
 
 }

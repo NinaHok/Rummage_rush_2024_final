@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class TowerSpawner : MonoBehaviour
 {
@@ -12,8 +13,9 @@ public class TowerSpawner : MonoBehaviour
 
     [Header("Towers user can buy:")]
     // Types of towers
-    [SerializeField] Tower defaultTower;
-    // more to come...
+    [SerializeField] Tower towerDefault;
+    [SerializeField] Tower towerHeavy;
+    [SerializeField] Tower towerFast;
 
     private Tower towerMarker;
 
@@ -30,6 +32,11 @@ public class TowerSpawner : MonoBehaviour
     [SerializeField] GameSettingsSO gameSettings;
     [SerializeField] HUDmanager hudManager;
 
+    //buttons
+    [SerializeField] Button button1;
+    [SerializeField] Button button2;
+    [SerializeField] Button button3;
+
     private void Awake()
     {
         // Intial setup
@@ -37,18 +44,31 @@ public class TowerSpawner : MonoBehaviour
         towerIndicator = null;
     }
 
+    private void Start()
+    {
+        button1.onClick.AddListener(delegate { StartTowerPlacement(towerDefault); });
+        button2.onClick.AddListener(delegate { StartTowerPlacement(towerFast); });
+        button3.onClick.AddListener(delegate { StartTowerPlacement(towerHeavy); });
+    }
+
     private void Update()
     {
 
         // create a tower with a button press
-        if (Input.GetKeyUp(KeyCode.T) && !spawnerIsActive && gameSettings.money > 0)
+        if (Input.GetKeyUp(KeyCode.Alpha1) && !spawnerIsActive && gameSettings.money > 0)
         {
-            towerIndicator = Instantiate(defaultTower, GetMousePosition(), Quaternion.identity);
-            spawnerIsActive = true;
-            hudManager.UpdateMoneyText();
+            StartTowerPlacement(towerDefault);
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha2) && !spawnerIsActive && gameSettings.money > 0)
+        {
+            StartTowerPlacement(towerFast);
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha3) && !spawnerIsActive && gameSettings.money > 0)
+        {
+            StartTowerPlacement(towerHeavy);
         }
 
-        if (Input.GetKeyUp(KeyCode.T) && !spawnerIsActive && gameSettings.money == 0)
+            if (Input.GetKeyUp(KeyCode.Alpha1) && !spawnerIsActive && gameSettings.money == 0)
         {
             Debug.Log($"Not enough money!");
         }
@@ -110,9 +130,18 @@ public class TowerSpawner : MonoBehaviour
 
     private void StartTowerPlacement(Tower newTower)
     {
-        towerMarker = Instantiate(newTower, mousePosition, Quaternion.identity);
-        spawnerIsActive = true;
-       
+        if (!spawnerIsActive && gameSettings.money > 0)
+        {
+            towerIndicator = Instantiate(newTower, mousePosition, Quaternion.identity);
+            spawnerIsActive = true;
+            hudManager.UpdateMoneyText();
+        }
+
+        else
+        {
+            Debug.Log($"Not enough money!");
+        }
+           
     } 
 
 
