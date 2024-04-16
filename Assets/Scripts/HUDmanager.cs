@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HUDmanager : MonoBehaviour
@@ -22,6 +23,10 @@ public class HUDmanager : MonoBehaviour
     [SerializeField] Button buttonPause;
     [SerializeField] Button buttonCloseControls;
 
+    [SerializeField] Button buttonResume;
+    [SerializeField] Button buttonExit;
+
+
 
     private void Start()
     {
@@ -39,6 +44,17 @@ public class HUDmanager : MonoBehaviour
             HideControls();
             gameSettings.currentGameState = GameStates.inGame;
             Time.timeScale = 1f;});
+
+        buttonResume.onClick.AddListener(() =>
+        {
+            HidePauseScreen();
+            gameSettings.currentGameState = GameStates.inGame;
+            Time.timeScale= 1f;});
+
+        buttonExit.onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene("MainMenu");
+        });
     }
 
 
