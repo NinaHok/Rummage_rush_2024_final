@@ -70,6 +70,7 @@ public class Tower : MonoBehaviour
                 {
                     firingTimer = 0f;
                     Fire();            // call the fire function
+                    gameSettings.damageDealt += projectile.damage;
                 }
 
 
