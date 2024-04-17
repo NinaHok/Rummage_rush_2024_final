@@ -10,6 +10,8 @@ public class GameSettingsSO : ScriptableObject
 
     public float money = 50f;
 
+    public float damageDealt = 0f;
+
     [SerializeField] Tower tower;
 
     [SerializeField] public GameStates currentGameState;
