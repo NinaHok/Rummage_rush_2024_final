@@ -6,6 +6,7 @@ public enum GameStates
 {
     inMainMenu,
     inGame,
+    inRandomEvent,
     paused,
     inTutorial,
     showingControls,

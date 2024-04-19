@@ -13,6 +13,12 @@ public class EventManagerSO : ScriptableObject
     public event Action onPauseGame;
     public event Action onResumeGame;
     public event Action onEnemyDestroyed;
+    public event Action onRandomEvent;
+
+    public void RandomEvent()
+    {
+        onRandomEvent?.Invoke();
+    }
 
     public void EnemyDestroyed()
     { onEnemyDestroyed?.Invoke(); }

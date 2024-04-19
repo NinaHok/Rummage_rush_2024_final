@@ -77,6 +77,15 @@ public class LevelManager : MonoBehaviour
             }
         }
 
+        if (gameSettings.currentGameState == GameStates.inGame)
+        {
+            if (gameSettings.damageDealt == 15f)
+            {
+                gameSettings.currentGameState = GameStates.inRandomEvent;
+                eventManager.RandomEvent();
+            }
+        }
+
 
 
     }

@@ -17,8 +17,11 @@ public class HUDmanager : MonoBehaviour
     [SerializeField] GameObject tutorialScreen;
     [SerializeField] GameObject pauseScreen;
     [SerializeField] GameObject controlsScreen;
+    [SerializeField] GameObject randomEventScreen;
 
     [SerializeField] EventManagerSO eventManager;
+
+    [SerializeField] RandomEvent randomEvent;
 
     [SerializeField] Button buttonControls;
     [SerializeField] Button buttonPause;
@@ -78,6 +81,7 @@ public class HUDmanager : MonoBehaviour
         eventManager.onPauseGame += DisplayPauseScreen;
         eventManager.onResumeGame += HidePauseScreen;
         eventManager.onEnemyDestroyed += UpdateMoneyText;
+        eventManager.onRandomEvent += ShowRandomEventScreen;
 
     }
 
@@ -88,6 +92,7 @@ public class HUDmanager : MonoBehaviour
         eventManager.onPauseGame -= DisplayPauseScreen;
         eventManager.onResumeGame -= HidePauseScreen;
         eventManager.onEnemyDestroyed -= UpdateMoneyText;
+        eventManager.onRandomEvent -= ShowRandomEventScreen;
 
 
         buttonExit.onClick.RemoveListener(() =>
@@ -154,6 +159,13 @@ public class HUDmanager : MonoBehaviour
         controlsScreen.SetActive(false);
     }
 
+    public void ShowRandomEventScreen()
+    {
+        gameSettings.previousGameState = gameSettings.currentGameState;
+        randomEventScreen.SetActive(true);
+        randomEvent.Randomize();
+        gameSettings.currentGameState = GameStates.inRandomEvent;
+    }
 }
 
 
