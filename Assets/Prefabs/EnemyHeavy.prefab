@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   enemyDamage: 10
+  rewardCost: 30
   damageDealingTimer: 0
   damageDealingDelay: 2
   enemyPath: {fileID: 0}
@@ -65,6 +66,7 @@ MonoBehaviour:
   targetedTower: {fileID: 0}
   towerHealthBar: {fileID: 0}
   gameSettings: {fileID: 11400000, guid: d7d743529fc20304a828928101bf520b, type: 2}
+  eventManager: {fileID: 11400000, guid: 460f86889e4558c4794133662cbd2532, type: 2}
 --- !u!65 &5712189260057213201
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -245,6 +247,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3906787295688218573}
     m_Modifications:
+    - target: {fileID: 4146481813835328687, guid: 57a258435a8bac74483a852e86fb7964,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4547607251495526195, guid: 57a258435a8bac74483a852e86fb7964,
         type: 3}
       propertyPath: m_Pivot.x

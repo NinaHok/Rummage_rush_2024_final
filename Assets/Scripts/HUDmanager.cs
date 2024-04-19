@@ -77,6 +77,7 @@ public class HUDmanager : MonoBehaviour
 
         eventManager.onPauseGame += DisplayPauseScreen;
         eventManager.onResumeGame += HidePauseScreen;
+        eventManager.onEnemyDestroyed += UpdateMoneyText;
 
     }
 
@@ -86,7 +87,7 @@ public class HUDmanager : MonoBehaviour
 
         eventManager.onPauseGame -= DisplayPauseScreen;
         eventManager.onResumeGame -= HidePauseScreen;
-
+        eventManager.onEnemyDestroyed -= UpdateMoneyText;
 
 
         buttonExit.onClick.RemoveListener(() =>
@@ -97,11 +98,15 @@ public class HUDmanager : MonoBehaviour
     }
 
     public void UpdateMoneyText()
-    {
-        gameSettings.money = gameSettings.money - tower.towerCost;    
+    { 
         moneyTextObject.text = $"x {gameSettings.money}";
     }
 
+    public void SubtractTowerCost()
+    {
+        gameSettings.money -= tower.towerCost;
+        moneyTextObject.text = $"x {gameSettings.money}";
+    }
 
     public void DisplayGameOverScreen()
     {

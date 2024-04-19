@@ -12,8 +12,6 @@ public class GameSettingsSO : ScriptableObject
 
     public float damageDealt = 0f;
 
-    [SerializeField] Tower tower;
-
     [SerializeField] public GameStates currentGameState;
     [SerializeField] public GameStates previousGameState;
 

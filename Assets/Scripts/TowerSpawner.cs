@@ -17,8 +17,6 @@ public class TowerSpawner : MonoBehaviour
     [SerializeField] Tower towerHeavy;
     [SerializeField] Tower towerFast;
 
-    private Tower towerMarker;
-
     // grid related
     [Header("Grid:")]
     [SerializeField] Tilemap tilemap;
@@ -146,9 +144,10 @@ public class TowerSpawner : MonoBehaviour
     {
         if (!spawnerIsActive && gameSettings.money > 0)
         {
+
             towerIndicator = Instantiate(newTower, mousePosition, Quaternion.identity);
             spawnerIsActive = true;
-            hudManager.UpdateMoneyText();
+            hudManager.SubtractTowerCost();
         }
 
         else
