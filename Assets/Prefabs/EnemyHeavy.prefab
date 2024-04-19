@@ -57,6 +57,7 @@ MonoBehaviour:
   enemyPath: {fileID: 0}
   hitTarget: {fileID: 8375444767571967219}
   maxHealth: 25
+  currentHealth: 0
   healthBar: {fileID: 5944981697809235920}
   towerLayers:
     serializedVersion: 2
@@ -250,7 +251,7 @@ PrefabInstance:
     - target: {fileID: 4146481813835328687, guid: 57a258435a8bac74483a852e86fb7964,
         type: 3}
       propertyPath: m_FillAmount
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4547607251495526195, guid: 57a258435a8bac74483a852e86fb7964,
         type: 3}
