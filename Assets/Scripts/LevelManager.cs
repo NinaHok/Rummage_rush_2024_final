@@ -79,7 +79,7 @@ public class LevelManager : MonoBehaviour
 
         if (gameSettings.currentGameState == GameStates.inGame)
         {
-            if (gameSettings.damageDealt == 15f)
+            if (gameSettings.damageDealt == 30f)
             {
                 gameSettings.currentGameState = GameStates.inRandomEvent;
                 eventManager.RandomEvent();

@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
                     transform.LookAt(targetedTower.transform.position);
                     transform.position = Vector3.MoveTowards(
                     transform.position,                                    // where from
-                    targetedTower.transform.position,                      // where to
+                    targetedTower.GetTargetPoint().position,               // where to
                     speed * Time.deltaTime                                 // how fast
                     );
 
