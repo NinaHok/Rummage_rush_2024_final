@@ -11,6 +11,7 @@ public class HUDmanager : MonoBehaviour
     [SerializeField] TMP_Text moneyTextObject;
 
     [SerializeField] GameSettingsSO gameSettings;
+
     [SerializeField] Tower tower;
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] GameObject tutorialScreen;
@@ -30,36 +31,46 @@ public class HUDmanager : MonoBehaviour
 
     private void Start()
     {
-        buttonPause.onClick.AddListener(() => { eventManager.PauseGame(); 
-            gameSettings.currentGameState = GameStates.paused; 
-            Time.timeScale = 0f; });
 
-        buttonControls.onClick.AddListener(() => {
-            ShowControls();
-            gameSettings.currentGameState = GameStates.showingControls;
-            Time.timeScale = 0f;});
-
-        buttonCloseControls.onClick.AddListener(() =>
-        {
-            HideControls();
-            gameSettings.currentGameState = GameStates.inGame;
-            Time.timeScale = 1f;});
-
-        buttonResume.onClick.AddListener(() =>
-        {
-            HidePauseScreen();
-            gameSettings.currentGameState = GameStates.inGame;
-            Time.timeScale= 1f;});
-
-        buttonExit.onClick.AddListener(() =>
-        {
-            SceneManager.LoadScene("MainMenu");
-        });
     }
 
 
     private void OnEnable()
     {
+        buttonPause.onClick.AddListener(() => {
+            eventManager.PauseGame();
+            gameSettings.currentGameState = GameStates.paused;
+            Time.timeScale = 0f;
+        });
+
+        buttonControls.onClick.AddListener(() => {
+            ShowControls();
+            gameSettings.currentGameState = GameStates.showingControls;
+            Time.timeScale = 0f;
+        });
+
+        buttonCloseControls.onClick.AddListener(() =>
+        {
+            HideControls();
+            gameSettings.currentGameState = GameStates.inGame;
+            Time.timeScale = 1f;
+        });
+
+        buttonResume.onClick.AddListener(() =>
+        {
+            HidePauseScreen();
+            gameSettings.currentGameState = GameStates.inGame;
+            Time.timeScale = 1f;
+        });
+
+        buttonExit.onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene("Main_Menu");
+        });
+
+
+
+
         eventManager.onGameOver += DisplayGameOverScreen;
 
         eventManager.onPauseGame += DisplayPauseScreen;
@@ -73,6 +84,14 @@ public class HUDmanager : MonoBehaviour
 
         eventManager.onPauseGame -= DisplayPauseScreen;
         eventManager.onResumeGame -= HidePauseScreen;
+
+
+
+        buttonExit.onClick.RemoveListener(() =>
+        {
+            SceneManager.LoadSceneAsync("Main_Menu");
+        });
+
     }
 
     public void UpdateMoneyText()

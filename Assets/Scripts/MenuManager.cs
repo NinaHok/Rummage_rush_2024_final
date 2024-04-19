@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
- 
 
-    public void LoadScene(SceneAsset sceneToBeLoaded)
+    public void LoadMenuScene()
     {
-        SceneManager.LoadScene(sceneToBeLoaded.name);
+        SceneManager.LoadScene("Main_Menu");
     }
 
+    public void LoadLevelScene()
+    {
+        SceneManager.LoadScene("Level_1");
+    }
 
 }

@@ -46,9 +46,7 @@ public class TowerSpawner : MonoBehaviour
 
     private void Start()
     {
-        button1.onClick.AddListener(delegate { StartTowerPlacement(towerDefault); });
-        button2.onClick.AddListener(delegate { StartTowerPlacement(towerFast); });
-        button3.onClick.AddListener(delegate { StartTowerPlacement(towerHeavy); });
+
     }
 
     private void Update()
@@ -103,6 +101,18 @@ public class TowerSpawner : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        button1.onClick.AddListener(delegate { StartTowerPlacement(towerDefault); });
+        button2.onClick.AddListener(delegate { StartTowerPlacement(towerFast); });
+        button3.onClick.AddListener(delegate { StartTowerPlacement(towerHeavy); });
+    }
+    private void OnDisable()
+    {
+        button1.onClick.RemoveListener(delegate { StartTowerPlacement(towerDefault); });
+        button2.onClick.RemoveListener(delegate { StartTowerPlacement(towerFast); });
+        button3.onClick.RemoveListener(delegate { StartTowerPlacement(towerHeavy); });
+    }
 
     private Vector3 GetMousePosition()
     {
