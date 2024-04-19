@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   money: 50
   damageDealt: 0
-  tower: {fileID: 7792919146501810276, guid: d033d99a0c4bb974399bd392688da662, type: 3}
-  currentGameState: 6
-  previousGameState: 1
+  currentGameState: 1
+  previousGameState: 6

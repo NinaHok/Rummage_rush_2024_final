@@ -14,6 +14,9 @@ public class Enemy : MonoBehaviour
     //damage
     [SerializeField] public float enemyDamage = 5f;
 
+    //drop reward
+    [SerializeField] float rewardCost = 30f;
+ 
     //damage timers
     [SerializeField] float damageDealingTimer;
     [SerializeField] float damageDealingDelay = 2f;
@@ -26,7 +29,7 @@ public class Enemy : MonoBehaviour
 
     // health
     [SerializeField] float maxHealth = 10.0f;
-    private float currentHealth;
+    [SerializeField] private float currentHealth;
     [SerializeField] HealthBar healthBar;
 
     //tower bookkeping
@@ -37,6 +40,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] TowerHealthBar towerHealthBar;
 
     [SerializeField] GameSettingsSO gameSettings;
+    [SerializeField] EventManagerSO eventManager;
+
 
 
     // remember where to go
@@ -132,6 +137,7 @@ public class Enemy : MonoBehaviour
     {
 
         currentHealth -= incomingDamage;
+        gameSettings.damageDealt += incomingDamage;
 
         // update the healthbar
         healthBar.UpdateHealthBar(currentHealth, maxHealth);
@@ -140,7 +146,8 @@ public class Enemy : MonoBehaviour
         if (currentHealth <= 0)
         {
             // TODO: Reward the player
-
+            gameSettings.money += rewardCost;
+            eventManager.EnemyDestroyed();
             Destroy(this.gameObject);
         }
     }

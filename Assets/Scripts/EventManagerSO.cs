@@ -12,7 +12,10 @@ public class EventManagerSO : ScriptableObject
 
     public event Action onPauseGame;
     public event Action onResumeGame;
+    public event Action onEnemyDestroyed;
 
+    public void EnemyDestroyed()
+    { onEnemyDestroyed?.Invoke(); }
     public void PauseGame()
     {
         onPauseGame?.Invoke();

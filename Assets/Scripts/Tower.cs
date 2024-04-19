@@ -106,7 +106,6 @@ public class Tower : MonoBehaviour
 
     private void Fire()
     {
-        gameSettings.damageDealt = projectile.damage + gameSettings.damageDealt;
         // make sure there is something to shoot at
         if (targetedEnemy != null)
         {
