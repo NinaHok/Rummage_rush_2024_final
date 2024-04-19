@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum GameStates
 {
+    inMainMenu,
     inGame,
     paused,
     inTutorial,

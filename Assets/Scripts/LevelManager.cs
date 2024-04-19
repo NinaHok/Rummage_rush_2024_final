@@ -15,16 +15,21 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
 
-        gameSettings.currentGameState = GameStates.inTutorial;
-
-        Time.timeScale = 0f;
-
-        if(SceneManager.GetActiveScene().name == "Level_1")
+        if (gameSettings.previousGameState == GameStates.inMainMenu)
         {
-            gameSettings.ResetMoney();
+            
             hudManager.DisplayTutorial();
 
+            Time.timeScale = 0f;
         }
+
+        if (SceneManager.GetActiveScene().name == "Level_1")
+        {
+            gameSettings.ResetMoney();
+            gameSettings.ResetDamageDealt();
+
+        }
+        
     }
 
     private void Update()
@@ -33,6 +38,7 @@ public class LevelManager : MonoBehaviour
         {
             if (Input.anyKeyDown)
             {
+                gameSettings.previousGameState = gameSettings.currentGameState;
                 hudManager.HideTutorial();
                 eventManager.ResumeGame();
                 gameSettings.currentGameState = GameStates.inGame;

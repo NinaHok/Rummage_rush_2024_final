@@ -65,7 +65,9 @@ public class HUDmanager : MonoBehaviour
 
         buttonExit.onClick.AddListener(() =>
         {
+            gameSettings.previousGameState = gameSettings.currentGameState;
             SceneManager.LoadScene("Main_Menu");
+            gameSettings.currentGameState = GameStates.inMainMenu;
         });
 
 
@@ -103,12 +105,14 @@ public class HUDmanager : MonoBehaviour
 
     public void DisplayGameOverScreen()
     {
+        gameSettings.previousGameState = gameSettings.currentGameState;
         gameOverScreen.SetActive(true);
         gameSettings.currentGameState = GameStates.gameOver;
     }
 
     public void DisplayTutorial()
     {
+        gameSettings.previousGameState = GameStates.inMainMenu;
         tutorialScreen.SetActive(true);
         gameSettings.currentGameState = GameStates.inTutorial;
     }
@@ -116,27 +120,32 @@ public class HUDmanager : MonoBehaviour
     public void HideTutorial()
     {
         tutorialScreen.SetActive(false);
-        gameSettings.currentGameState = GameStates.inGame;
 
     }
 
     public void DisplayPauseScreen()
     {
+        gameSettings.previousGameState = gameSettings.currentGameState;
         pauseScreen.SetActive(true);
+        gameSettings.currentGameState = GameStates.paused;
     }
 
     public void HidePauseScreen()
     {
+        gameSettings.previousGameState = gameSettings.currentGameState;
         pauseScreen.SetActive(false);
+        gameSettings.currentGameState = GameStates.inGame;
     }
 
     public void ShowControls()
     {
+        gameSettings.previousGameState = gameSettings.currentGameState;
         controlsScreen.SetActive(true);
     }
 
     public void HideControls()
     {
+        gameSettings.previousGameState = gameSettings.currentGameState;
         controlsScreen.SetActive(false);
     }
 

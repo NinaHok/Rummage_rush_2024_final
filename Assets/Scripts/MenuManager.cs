@@ -6,15 +6,22 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    [SerializeField] GameSettingsSO gameSettings;
+
 
     public void LoadMenuScene()
     {
+        gameSettings.previousGameState = gameSettings.currentGameState;
         SceneManager.LoadScene("Main_Menu");
+        gameSettings.currentGameState = GameStates.inMainMenu;
     }
 
     public void LoadLevelScene()
     {
+        gameSettings.previousGameState = gameSettings.currentGameState;
         SceneManager.LoadScene("Level_1");
+        gameSettings.currentGameState = GameStates.inGame;
+
     }
 
 }

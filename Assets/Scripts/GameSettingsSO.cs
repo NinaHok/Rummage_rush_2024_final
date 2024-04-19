@@ -15,11 +15,24 @@ public class GameSettingsSO : ScriptableObject
     [SerializeField] Tower tower;
 
     [SerializeField] public GameStates currentGameState;
+    [SerializeField] public GameStates previousGameState;
+
+
+    private void Awake()
+    {
+        currentGameState = GameStates.inMainMenu;
+        previousGameState = currentGameState;
+
+    }
 
     public void ResetMoney()
     {
         money = 50f;
     }
 
+    public void ResetDamageDealt()
+    {
+        damageDealt = 0f;
+    }
 
 }

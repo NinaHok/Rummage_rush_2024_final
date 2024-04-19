@@ -106,6 +106,7 @@ public class Tower : MonoBehaviour
 
     private void Fire()
     {
+        gameSettings.damageDealt = projectile.damage + gameSettings.damageDealt;
         // make sure there is something to shoot at
         if (targetedEnemy != null)
         {
@@ -117,6 +118,8 @@ public class Tower : MonoBehaviour
             // create and setup a projectile
             Instantiate(projectile, firingPoint.position, Quaternion.identity)
                 .Setup(enemyDirection, targetedEnemy);
+
+
         }
 
     }
