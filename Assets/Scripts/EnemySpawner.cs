@@ -33,18 +33,11 @@ public class EnemySpawner : MonoBehaviour
     {
         // which enemy to spawn, where, what rotation, which path
         Instantiate(enemyToSpawn, transform.position, Quaternion.identity).SetEnemyPath(chosenPath);
-        
+        enemies.Add(enemyToSpawn);
 
     }
     private void Awake()
     {
-        enemies.Add(enemyDefault);
-        enemies.Add(enemyDefault);
-        enemies.Add(enemyFast);
-        enemies.Add(enemyDefault);
-        enemies.Add(enemyDefault);
-        enemies.Add(enemyHeavy);
-        enemies.Add(enemyHeavy);
 
     }
 
