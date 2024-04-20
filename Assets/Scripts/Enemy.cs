@@ -158,6 +158,12 @@ public class Enemy : MonoBehaviour
             gameSettings.enemiesDestroyed++;
             eventManager.EnemyDestroyed();
             Destroy(this.gameObject);
+
+            if (gameSettings.enemiesDestroyed == gameSettings.enemiesSpawned)
+            {
+                eventManager.Win();
+            }
+
         }
     }
 

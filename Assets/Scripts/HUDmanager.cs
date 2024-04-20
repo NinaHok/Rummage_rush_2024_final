@@ -29,14 +29,15 @@ public class HUDmanager : MonoBehaviour
     [SerializeField] Button buttonCloseControls;
 
     [SerializeField] Button buttonResume;
-    [SerializeField] Button buttonExit;
-    [SerializeField] Button buttonRestart;
 
 
 
-    private void Start()
+    private void Update()
     {
-
+        if ( winScreen.activeInHierarchy == true)
+        {
+            randomEventScreen.SetActive(false);
+        }
     }
 
 
@@ -140,6 +141,7 @@ public class HUDmanager : MonoBehaviour
         gameSettings.previousGameState = gameSettings.currentGameState;
         winScreen.SetActive(true);
         gameSettings.currentGameState = GameStates.win;
+        Time.timeScale = 0f;
     }
 
     public void DisplayTutorial()

@@ -21,6 +21,7 @@ public class MenuManager : MonoBehaviour
         gameSettings.previousGameState = gameSettings.currentGameState;
         gameSettings.currentGameState = GameStates.inGame;
         SceneManager.LoadScene("Level_1");
+      
 
     }
 
