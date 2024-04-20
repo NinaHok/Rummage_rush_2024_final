@@ -115,7 +115,7 @@ public class LevelManager : MonoBehaviour
             }
         }
 
-        if (gameSettings.currentGameState == GameStates.inRandomEvent)
+        else if (gameSettings.currentGameState == GameStates.inRandomEvent)
         {
             if (Input.anyKeyDown)
             {
@@ -195,17 +195,7 @@ public class LevelManager : MonoBehaviour
 
 
         }
-
-        //if (gameSettings.currentGameState == GameStates.inGame && 
-        //    gameSettings.enemiesDestroyed == gameSettings.enemiesSpawned)
-        //{
-        //    eventManager.Win();
-        //}
-
-
-
-
-               
+                       
                 
                  
     }

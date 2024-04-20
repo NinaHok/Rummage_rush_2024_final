@@ -51,36 +51,4 @@ public class EventManagerSO : ScriptableObject
         onWin?.Invoke();
     }
 
-    //Random Item Events
-
-    public void BananaPeel()
-    {
-        onBananaPeel?.Invoke();
-    }
-
-    public void CardboardBox()
-    {
-        onCardboardBox?.Invoke();
-    }
-
-    public void CrushedCan()
-    {
-        onCrushedCan?.Invoke();
-    }
-
-    public void Lavalamp()
-    {
-        onLavalamp?.Invoke();
-    }
-
-    public void MoldyBrownie()
-    {
-        onMoldyBrownie?.Invoke();
-    }
-
-    public void PlasticKnife()
-    {
-        onPlasticKnife?.Invoke();
-    }
-
 }

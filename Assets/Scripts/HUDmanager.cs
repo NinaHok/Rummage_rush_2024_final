@@ -34,7 +34,7 @@ public class HUDmanager : MonoBehaviour
 
     private void Update()
     {
-        if ( winScreen.activeInHierarchy == true)
+        if (winScreen.activeInHierarchy == true)
         {
             randomEventScreen.SetActive(false);
         }
