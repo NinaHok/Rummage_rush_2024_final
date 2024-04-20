@@ -15,13 +15,18 @@ public class GameSettingsSO : ScriptableObject
     [SerializeField] public GameStates currentGameState;
     [SerializeField] public GameStates previousGameState;
 
+    public int enemiesSpawned = 0;
+    public int enemiesDestroyed = 0;
+
 
     private void Awake()
     {
         currentGameState = GameStates.inMainMenu;
         previousGameState = currentGameState;
-
+        enemiesSpawned = 7;
+        enemiesDestroyed = 0;
     }
+
 
     public void ResetMoney()
     {

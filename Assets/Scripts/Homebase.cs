@@ -17,6 +17,9 @@ public class Homebase : MonoBehaviour
     [SerializeField] float damageTakingTimer;
     [SerializeField] public float damageTakingDelay = 2f;
 
+    //default or reset value
+    [SerializeField] public float defaultDamageTakingDelay = 2f;
+
     //Enemy bookkeping
     [SerializeField] LayerMask enemyLayers;
     [SerializeField] Collider[] colliders;
@@ -26,11 +29,12 @@ public class Homebase : MonoBehaviour
 
 
 
+
     // Start is called before the first frame update
     void Start()
     {
         currentHomebaseHealth = homebaseHealth;
-        damageTakingDelay = 2f;
+        damageTakingDelay = defaultDamageTakingDelay;
     }
 
     // Update is called once per frame

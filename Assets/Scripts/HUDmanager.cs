@@ -18,6 +18,7 @@ public class HUDmanager : MonoBehaviour
     [SerializeField] GameObject pauseScreen;
     [SerializeField] GameObject controlsScreen;
     [SerializeField] GameObject randomEventScreen;
+    [SerializeField] GameObject winScreen;
 
     [SerializeField] EventManagerSO eventManager;
 
@@ -28,15 +29,15 @@ public class HUDmanager : MonoBehaviour
     [SerializeField] Button buttonCloseControls;
 
     [SerializeField] Button buttonResume;
-    [SerializeField] Button buttonExit;
-
-    [SerializeField] Button buttonRestart;
 
 
 
-    private void Start()
+    private void Update()
     {
-
+        if ( winScreen.activeInHierarchy == true)
+        {
+            randomEventScreen.SetActive(false);
+        }
     }
 
 
@@ -68,23 +69,23 @@ public class HUDmanager : MonoBehaviour
             Time.timeScale = 1f;
         });
 
-        buttonExit.onClick.AddListener(() =>
-        {
-            gameSettings.previousGameState = gameSettings.currentGameState;
-            SceneManager.LoadScene("Main_Menu");
-            gameSettings.currentGameState = GameStates.inMainMenu;
-        });
+        //buttonExit.onClick.AddListener(() =>
+        //{
+        //    gameSettings.previousGameState = gameSettings.currentGameState;
+        //    SceneManager.LoadScene("Main_Menu");
+        //    gameSettings.currentGameState = GameStates.inMainMenu;
+        //});
 
-        buttonRestart.onClick.AddListener(() => {
-            gameSettings.previousGameState = gameSettings.currentGameState;
-            SceneManager.LoadScene("Level_1");
-            gameSettings.currentGameState = GameStates.inGame;
-        });
+        //buttonRestart.onClick.AddListener(() => {
+        //    gameSettings.previousGameState = gameSettings.currentGameState;
+        //    SceneManager.LoadScene("Level_1");
+        //    gameSettings.currentGameState = GameStates.inGame;
+        //});
 
 
 
         eventManager.onGameOver += DisplayGameOverScreen;
-
+        eventManager.onWin += DisplayWinScreen;
         eventManager.onPauseGame += DisplayPauseScreen;
         eventManager.onResumeGame += HidePauseScreen;
         eventManager.onEnemyDestroyed += UpdateMoneyText;
@@ -95,17 +96,25 @@ public class HUDmanager : MonoBehaviour
     private void OnDisable()
     {
         eventManager.onGameOver -= DisplayGameOverScreen;
-
+        eventManager.onWin -= DisplayWinScreen;
         eventManager.onPauseGame -= DisplayPauseScreen;
         eventManager.onResumeGame -= HidePauseScreen;
         eventManager.onEnemyDestroyed -= UpdateMoneyText;
         eventManager.onRandomEvent -= ShowRandomEventScreen;
 
 
-        buttonExit.onClick.RemoveListener(() =>
-        {
-            SceneManager.LoadScene("Main_Menu");
-        });
+        //buttonExit.onClick.RemoveListener(() =>
+        //{
+        //    gameSettings.previousGameState = gameSettings.currentGameState;
+        //    SceneManager.LoadScene("Main_Menu");
+        //    gameSettings.currentGameState = GameStates.inMainMenu;
+        //});
+
+        //buttonRestart.onClick.RemoveListener(() => {
+        //    gameSettings.previousGameState = gameSettings.currentGameState;
+        //    SceneManager.LoadScene("Level_1");
+        //    gameSettings.currentGameState = GameStates.inGame;
+        //});
 
     }
 
@@ -125,6 +134,14 @@ public class HUDmanager : MonoBehaviour
         gameSettings.previousGameState = gameSettings.currentGameState;
         gameOverScreen.SetActive(true);
         gameSettings.currentGameState = GameStates.gameOver;
+    }
+
+    public void DisplayWinScreen()
+    {
+        gameSettings.previousGameState = gameSettings.currentGameState;
+        winScreen.SetActive(true);
+        gameSettings.currentGameState = GameStates.win;
+        Time.timeScale = 0f;
     }
 
     public void DisplayTutorial()

@@ -10,6 +10,6 @@ public enum GameStates
     paused,
     inTutorial,
     showingControls,
-    victory,
+    win,
     gameOver
 }

@@ -153,10 +153,17 @@ public class Enemy : MonoBehaviour
         // gg wp
         if (currentHealth <= 0)
         {
-            // TODO: Reward the player
+
             gameSettings.money += rewardCost;
+            gameSettings.enemiesDestroyed++;
             eventManager.EnemyDestroyed();
             Destroy(this.gameObject);
+
+            if (gameSettings.enemiesDestroyed == gameSettings.enemiesSpawned)
+            {
+                eventManager.Win();
+            }
+
         }
     }
 

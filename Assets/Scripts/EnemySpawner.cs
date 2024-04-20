@@ -15,7 +15,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] List<EnemyPath> paths;
     [SerializeField] public List<Enemy> enemies;
 
-
     // == ENEMIES ==
     [SerializeField] Enemy enemyDefault;
     [SerializeField] Enemy enemyFast;
@@ -24,15 +23,29 @@ public class EnemySpawner : MonoBehaviour
     // == SETTINGS ==
     //[SerializeField] int wave01Enemies = 8;
 
+    // == DELAYS ==
     [SerializeField] float randomDelayMin = .5f;
     [SerializeField] float randomDelayMax = 4.0f;
 
+    [SerializeField] GameSettingsSO gameSettings;
 
     private void SpawnEnemy(Enemy enemyToSpawn, EnemyPath chosenPath)
     {
         // which enemy to spawn, where, what rotation, which path
         Instantiate(enemyToSpawn, transform.position, Quaternion.identity).SetEnemyPath(chosenPath);
-        enemies.Add(enemyToSpawn);
+        
+
+    }
+    private void Awake()
+    {
+        enemies.Add(enemyDefault);
+        enemies.Add(enemyDefault);
+        enemies.Add(enemyFast);
+        enemies.Add(enemyDefault);
+        enemies.Add(enemyDefault);
+        enemies.Add(enemyHeavy);
+        enemies.Add(enemyHeavy);
+
     }
 
     private void Start()
