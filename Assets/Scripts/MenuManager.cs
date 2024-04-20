@@ -19,8 +19,8 @@ public class MenuManager : MonoBehaviour
     public void LoadLevelScene()
     {
         gameSettings.previousGameState = gameSettings.currentGameState;
-        SceneManager.LoadScene("Level_1");
         gameSettings.currentGameState = GameStates.inGame;
+        SceneManager.LoadScene("Level_1");
 
     }
 

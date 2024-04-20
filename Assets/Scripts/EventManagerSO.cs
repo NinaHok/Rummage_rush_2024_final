@@ -14,6 +14,7 @@ public class EventManagerSO : ScriptableObject
     public event Action onResumeGame;
     public event Action onEnemyDestroyed;
     public event Action onRandomEvent;
+    public event Action onWin;
 
     public event Action onBananaPeel;
     public event Action onCardboardBox;
@@ -43,6 +44,11 @@ public class EventManagerSO : ScriptableObject
     public void GameOver()
     {
         onGameOver?.Invoke();
+    }
+
+    public void Win()
+    {
+        onWin?.Invoke();
     }
 
     //Random Item Events

@@ -34,14 +34,18 @@ public class LevelManager : MonoBehaviour
         {
             
             hudManager.DisplayTutorial();
-
+            gameSettings.currentGameState = GameStates.inTutorial;
             Time.timeScale = 0f;
         }
 
         if (SceneManager.GetActiveScene().name == "Level_1")
         {
+            gameSettings.currentGameState = GameStates.inGame;
+            Time.timeScale = 1f;
             gameSettings.ResetMoney();
             gameSettings.ResetDamageDealt();
+            gameSettings.enemiesSpawned = 7;
+            gameSettings.enemiesDestroyed = 0;
 
         }
         
@@ -109,6 +113,7 @@ public class LevelManager : MonoBehaviour
         {
             if (Input.anyKeyDown)
             {
+                randomEventTimer = 0f;
                 gameSettings.previousGameState = gameSettings.currentGameState;
                 hudManager.HideRandomEventScreen();
                 gameSettings.currentGameState = GameStates.inGame;
@@ -117,7 +122,10 @@ public class LevelManager : MonoBehaviour
         }
 
         if (gameSettings.previousGameState == GameStates.inRandomEvent && 
-            gameSettings.currentGameState == GameStates.inGame)
+            gameSettings.currentGameState == GameStates.inGame && 
+            randomEvent.item != null &&
+            randomEvent.itemName != null )
+
         {
            
             randomEventTimer += Time.deltaTime;
@@ -174,9 +182,17 @@ public class LevelManager : MonoBehaviour
 
                 foreach (Tower tower in towerSpawner.towers)
                     tower.firingDelay = tower.defaultFiringDelay;
+
+                homebase.damageTakingDelay = homebase.defaultDamageTakingDelay;
             }
 
 
+        }
+        if (gameSettings.currentGameState == GameStates.inGame && 
+            gameSettings.enemiesDestroyed == gameSettings.enemiesSpawned)
+        {
+            eventManager.Win();
+            Time.timeScale = 0f;
         }
 
 

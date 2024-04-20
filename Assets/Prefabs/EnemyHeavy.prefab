@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSpeed: 2
   defaultHealth: 25
-  speed: 2
+  speed: 1
   enemyDamage: 10
   rewardCost: 30
   damageDealingTimer: 0
