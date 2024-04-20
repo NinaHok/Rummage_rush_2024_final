@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class Enemy : MonoBehaviour
 {
 
+    // Enemy states
     private enum EnemyState
     {
         Stopped,
@@ -14,6 +16,8 @@ public class Enemy : MonoBehaviour
     }
 
     private EnemyState enemyState;
+
+    private Transform enemySlotAroundTower;
 
 
     //default values or reset values
@@ -65,8 +69,6 @@ public class Enemy : MonoBehaviour
     // remember where to go
     private int currentTargetWaypoint = 0;
 
-    private bool hasReachedEnd;
-
     private void Awake()
     {
         //set max health
@@ -81,8 +83,12 @@ public class Enemy : MonoBehaviour
     {
         if (gameSettings.currentGameState == GameStates.inGame)
         {
+            // Choose enemy behaviour based on the current state
             switch (enemyState)
             {
+                // = Stopped =
+                // Enemy has already reached the end of path
+                // Nothing to do but scan for towers
                 case EnemyState.Stopped:
                 {
                     ScanForTower();
@@ -91,6 +97,8 @@ public class Enemy : MonoBehaviour
                     break;
                 }
 
+                // = Regular traveling =
+                // Enemy is traveling along points
                 case EnemyState.Traveling:
                 {
                     // have we surpassed the last waypoint?
@@ -124,19 +132,37 @@ public class Enemy : MonoBehaviour
                     break;
                 }
 
+                // = Moving to attack a tower =
+                // Enemy has detected a tower and moves into an
+                // available slot, if possible
                 case EnemyState.MovingToAttack:
                 {
                     if (targetedTower != null && targetedTower.towerIsActive)
                     {
-                        transform.LookAt(targetedTower.transform.position);
+                        if (!enemySlotAroundTower)
+                        {
+                            if(targetedTower.GetEnemySlot(this, out Transform slotTransform))
+                            {
+                                enemySlotAroundTower = slotTransform;
+                            }
+                            else
+                            {
+                                // Cannot find a free slot around the tower
+                                // Getting out of here
+                                enemyState = EnemyState.Traveling; break;
+                            }
+                        }
+
+
+                        transform.LookAt(enemySlotAroundTower.transform.position);
                         transform.position = Vector3.MoveTowards(
                         transform.position,                                    // where from
-                        targetedTower.GetTargetPoint().position,               // where to
+                        enemySlotAroundTower.transform.position,               // where to
                         speed * Time.deltaTime                                 // how fast
                         );
 
                         if (Vector3.Distance(transform.position,
-                            targetedTower.GetTargetPoint().position) < 0.1f)
+                            enemySlotAroundTower.transform.position) < 0.1f)
                         {
                             enemyState = EnemyState.Attacking; break;
                         }
@@ -147,6 +173,7 @@ public class Enemy : MonoBehaviour
                     enemyState = EnemyState.Traveling; break;
                 }
 
+                // = Attacking a tower =
                 case EnemyState.Attacking:
                 {
                     if (targetedTower != null && targetedTower.towerIsActive)

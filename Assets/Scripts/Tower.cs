@@ -1,9 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+
+    // Enemyslots
+    // Positions for enemies around the towers
+    [SerializeField] List<EnemySlot> enemySlots;
 
     //default values or reset values
     [SerializeField] public float defaultFiringDelay;
@@ -43,6 +48,13 @@ public class Tower : MonoBehaviour
         currentTowerHealth = towerHealth;
         firingDelay = defaultFiringDelay;
 
+        // populate enemyslots
+        enemySlots = new List<EnemySlot>();
+        foreach (Transform t in transform)
+            if (t.name == "EnemySlots")
+                foreach (Transform slot in t)
+                    enemySlots.Add(new EnemySlot(slot));
+
     }
 
 
@@ -53,7 +65,6 @@ public class Tower : MonoBehaviour
 
             if (towerIsActive)
             {
-
                 towerHealthBar.UpdateTowerHealthBar(currentTowerHealth, towerHealth);
 
                 // == SCANNING PART ==
@@ -79,11 +90,6 @@ public class Tower : MonoBehaviour
                     Fire();            // call the fire function
 
                 }
-
-
-
-
-
             }
         }
     }
@@ -125,9 +131,7 @@ public class Tower : MonoBehaviour
             Instantiate(projectile, firingPoint.position, Quaternion.identity)
                 .Setup(enemyDirection, targetedEnemy);
 
-
         }
-
     }
 
 
@@ -160,6 +164,62 @@ public class Tower : MonoBehaviour
         return targetPoint;
     }
 
+    public bool GetEnemySlot(Enemy enemy, out Transform transform)
+    {
+        // This method allows the tower to tell an
+        // attacking enemy where to go and stand
+
+        // Is the enemy already occupying a slot?
+        foreach (EnemySlot slot in enemySlots)
+        {
+            if (slot.enemy == enemy)
+            {
+                transform = slot.transform;
+                return true;
+            }
+        }
+
+        // If not, is there an emptly slot available?
+        for(int i = 0; i < enemySlots.Count; i++)
+        {
+            if (enemySlots[i].enemy == null)
+            {
+                Debug.Log($"Assigning a new slot for enemy {enemy.name}");
+                enemySlots[i].SetEnemy(enemy);
+                transform = enemySlots[i].transform;
+                return true;
+            }
+        }
+
+        // No slots available
+        transform = null;
+        return false;
+    }
+
+
+    
+    [Serializable] class EnemySlot
+    {
+        // This class stores 2 things:
+        // - a transform (empty) around the tower
+        // - an attacking enemy
+
+        public Transform transform;
+        public Enemy enemy;
+
+        public EnemySlot(Transform transform)
+        {
+            this.transform = transform;
+            this.enemy = null;
+        }
+
+        public void SetEnemy(Enemy enemy)
+        {
+            this.enemy = enemy;
+        }
+    }
 
 }
+
+
 
