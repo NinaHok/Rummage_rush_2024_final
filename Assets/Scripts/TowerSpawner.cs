@@ -35,6 +35,9 @@ public class TowerSpawner : MonoBehaviour
     [SerializeField] Button button2;
     [SerializeField] Button button3;
 
+    //towers spawned list
+    [SerializeField] public List<Tower> towers;
+
     private void Awake()
     {
         // Intial setup
@@ -81,6 +84,7 @@ public class TowerSpawner : MonoBehaviour
                 if (Input.GetMouseButton(0))
                 {
                     towerIndicator.activateTower();
+                    towers.Add(towerIndicator);
                     towerIndicator = null;
                     spawnerIsActive = false;
                 }

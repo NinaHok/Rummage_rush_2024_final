@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,18 +6,20 @@ using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class RandomEvent : MonoBehaviour
 {
     [SerializeField] List<Sprite> randomItems;
+    [SerializeField] List<string> randomItemNames;
     [SerializeField] TMP_Text randomItemName;
     [SerializeField] GameObject panel;
 
     [SerializeField] EventManagerSO eventManager;
 
     private int randomIndex;
-    private Sprite item;
-
+    public Sprite item;
+    public string itemName;
 
     private void OnEnable()
     {
@@ -32,8 +35,9 @@ public class RandomEvent : MonoBehaviour
         Debug.Log($"randomizing...");
         randomIndex = Random.Range(0, randomItems.Count);
         item = randomItems[randomIndex];
+        itemName = randomItemNames[randomIndex];
     
         panel.GetComponent<Image>().sprite = item;
-        randomItemName.text = "You get..." + item.name;
+        randomItemName.text = "You get a..." + itemName;
     }
 }

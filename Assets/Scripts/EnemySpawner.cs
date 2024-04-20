@@ -13,6 +13,7 @@ public class EnemySpawner : MonoBehaviour
     //[SerializeField] EnemyPath enemyPathB;
 
     [SerializeField] List<EnemyPath> paths;
+    [SerializeField] public List<Enemy> enemies;
 
 
     // == ENEMIES ==
@@ -31,6 +32,7 @@ public class EnemySpawner : MonoBehaviour
     {
         // which enemy to spawn, where, what rotation, which path
         Instantiate(enemyToSpawn, transform.position, Quaternion.identity).SetEnemyPath(chosenPath);
+        enemies.Add(enemyToSpawn);
     }
 
     private void Start()

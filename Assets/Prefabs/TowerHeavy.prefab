@@ -226,7 +226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d0afb730421f342b28c194d6f44cc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerCost: 40
+  defaultFiringDelay: 2
+  towerCost: 25
   towerHealth: 30
   currentTowerHealth: 0
   range: 5

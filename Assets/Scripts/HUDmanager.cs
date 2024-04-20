@@ -30,6 +30,8 @@ public class HUDmanager : MonoBehaviour
     [SerializeField] Button buttonResume;
     [SerializeField] Button buttonExit;
 
+    [SerializeField] Button buttonRestart;
+
 
 
     private void Start()
@@ -73,6 +75,11 @@ public class HUDmanager : MonoBehaviour
             gameSettings.currentGameState = GameStates.inMainMenu;
         });
 
+        buttonRestart.onClick.AddListener(() => {
+            gameSettings.previousGameState = gameSettings.currentGameState;
+            SceneManager.LoadScene("Level_1");
+            gameSettings.currentGameState = GameStates.inGame;
+        });
 
 
 
@@ -97,7 +104,7 @@ public class HUDmanager : MonoBehaviour
 
         buttonExit.onClick.RemoveListener(() =>
         {
-            SceneManager.LoadSceneAsync("Main_Menu");
+            SceneManager.LoadScene("Main_Menu");
         });
 
     }
@@ -165,6 +172,11 @@ public class HUDmanager : MonoBehaviour
         randomEventScreen.SetActive(true);
         randomEvent.Randomize();
         gameSettings.currentGameState = GameStates.inRandomEvent;
+    }
+
+    public void HideRandomEventScreen()
+    {
+        randomEventScreen.SetActive(false);
     }
 }
 

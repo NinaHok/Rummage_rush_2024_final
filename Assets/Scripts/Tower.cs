@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+
+    //default values or reset values
+    [SerializeField] public float defaultFiringDelay;
+
     [SerializeField] public float towerCost = 25f;
     [SerializeField] public float towerHealth = 80f;
     public float currentTowerHealth;
@@ -17,7 +21,7 @@ public class Tower : MonoBehaviour
 
     // Timers
     [SerializeField] float firingTimer;
-    [SerializeField]float firingDelay = 1.0f;
+    [SerializeField] public float firingDelay = 1.0f;
 
     float scanningTimer;
     float scanningDelay = 0.1f;
@@ -37,6 +41,8 @@ public class Tower : MonoBehaviour
         // initial setup
         towerIsActive = false;
         currentTowerHealth = towerHealth;
+        firingDelay = defaultFiringDelay;
+
     }
 
 
