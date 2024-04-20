@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 237fa5461b38bfd44b43b2038bd5e815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultSpeed: 3
+  defaultHealth: 15
   speed: 3
   enemyDamage: 5
   rewardCost: 30

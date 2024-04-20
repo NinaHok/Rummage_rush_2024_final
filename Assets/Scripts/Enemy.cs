@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    //default values or reset values
+    [SerializeField] public float defaultSpeed;
+
+    [SerializeField] public float defaultHealth;
+
+
 
     //speed
-    [SerializeField] float speed = 2.5f;
+    [SerializeField] public float speed;
 
     //range
     float range = 2.0f;
@@ -28,8 +34,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] Transform hitTarget;
 
     // health
-    [SerializeField] float maxHealth = 10.0f;
-    [SerializeField] private float currentHealth;
+    [SerializeField] public float maxHealth;
+    [SerializeField] public float currentHealth;
     [SerializeField] HealthBar healthBar;
 
     //tower bookkeping
@@ -52,7 +58,9 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         //set max health
+        maxHealth = defaultHealth;
         currentHealth = maxHealth;
+        speed = defaultSpeed;
     }
 
     private void Update()
@@ -77,7 +85,7 @@ public class Enemy : MonoBehaviour
                     speed * Time.deltaTime                                 // how fast
                     );
 
-                    foreach (Collider towerDefault in colliders)
+                    foreach (Collider tower in colliders)
                     {
                         damageDealingTimer += Time.deltaTime;
                         if (damageDealingTimer >= damageDealingDelay)

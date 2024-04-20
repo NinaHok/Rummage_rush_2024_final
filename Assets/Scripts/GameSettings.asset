@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8a7aee229ac6a43b77c11efdc2749b, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  money: 30
-  damageDealt: 35
+  money: 185
+  damageDealt: 0
   currentGameState: 1
-  previousGameState: 1
+  previousGameState: 2

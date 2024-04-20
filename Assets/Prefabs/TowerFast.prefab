@@ -226,7 +226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d0afb730421f342b28c194d6f44cc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerCost: 15
+  defaultFiringDelay: 0.5
+  towerCost: 25
   towerHealth: 10
   currentTowerHealth: 0
   range: 8
@@ -236,7 +237,7 @@ MonoBehaviour:
   targetPoint: {fileID: 7648532681397653615}
   towerIsActive: 0
   firingTimer: 0
-  firingDelay: 0.75
+  firingDelay: 0.5
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
