@@ -27,6 +27,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Enemy enemyFast;
     [SerializeField] Enemy enemyHeavy;
 
+    [SerializeField] Enemy[] enemiesInTheScene;
+
     private void Awake()
     {
         gameSettings.currentGameState = GameStates.inGame;
@@ -55,9 +57,9 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
+        FindEnemiesInTheScene();
 
-
-        if(gameSettings.currentGameState== GameStates.inTutorial)
+        if (gameSettings.currentGameState== GameStates.inTutorial)
         {
             if (Input.anyKeyDown)
             {
@@ -106,7 +108,6 @@ public class LevelManager : MonoBehaviour
             {
                 randomEvent.item = null;
                 randomEvent.itemName = null;
-                randomEventTimer = 0f;
                 gameSettings.previousGameState = GameStates.inGame;
                 gameSettings.currentGameState = GameStates.inRandomEvent;
                 Time.timeScale = 0f;
@@ -141,7 +142,12 @@ public class LevelManager : MonoBehaviour
 
                 if (randomEvent.itemName == "Banana peel")
                 {
+                    
+
                     foreach (Enemy enemy in enemySpawner.enemies)
+                    enemy.speed = 1f;
+
+                    foreach (Enemy enemy in enemiesInTheScene)
                     enemy.speed = 1f;
                 }
 
@@ -170,8 +176,15 @@ public class LevelManager : MonoBehaviour
 
                 else if (randomEvent.itemName == "Plastic knife")
                 {
-                    foreach (Enemy enemy in enemySpawner.enemies)
+                    
+                    foreach (Enemy enemy in enemiesInTheScene)
+                    {
                         enemy.maxHealth = 5f;
+                        enemy.currentHealth = 5f;
+                    }
+                        
+                    
+
                 }
 
             }
@@ -180,8 +193,12 @@ public class LevelManager : MonoBehaviour
             {
                 randomEvent.item = null;
                 randomEvent.itemName = null;
+               
 
                 foreach (Enemy enemy in enemySpawner.enemies)
+                    enemy.speed = enemy.defaultSpeed;
+
+                foreach (Enemy enemy in enemiesInTheScene)
                     enemy.speed = enemy.defaultSpeed;
 
                 foreach (Enemy enemy in enemySpawner.enemies)
@@ -199,6 +216,14 @@ public class LevelManager : MonoBehaviour
                 
                  
     }
+
+
+    private void FindEnemiesInTheScene()
+    {
+        enemiesInTheScene = UnityEngine.Object.FindObjectsOfType<Enemy>();
+
+    }
+
 }
 
     

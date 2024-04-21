@@ -24,8 +24,8 @@ public class EnemySpawner : MonoBehaviour
     //[SerializeField] int wave01Enemies = 8;
 
     // == DELAYS ==
-    [SerializeField] float randomDelayMin = .5f;
-    [SerializeField] float randomDelayMax = 4.0f;
+    //[SerializeField] float randomDelayMin = .5f;
+    //[SerializeField] float randomDelayMax = 4.0f;
 
     [SerializeField] GameSettingsSO gameSettings;
 

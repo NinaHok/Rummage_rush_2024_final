@@ -16,13 +16,6 @@ public class EventManagerSO : ScriptableObject
     public event Action onRandomEvent;
     public event Action onWin;
 
-    public event Action onBananaPeel;
-    public event Action onCardboardBox;
-    public event Action onCrushedCan;
-    public event Action onLavalamp;
-    public event Action onMoldyBrownie;
-    public event Action onPlasticKnife;
-
 
     public void RandomEvent()
     {
