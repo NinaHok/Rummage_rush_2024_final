@@ -103,10 +103,11 @@ public class Enemy : MonoBehaviour
                         break;
                     }
 
-                    transform.LookAt(targetedTower.transform.position);
+                    transform.LookAt(enemyPath.GetWaypoint(currentTargetWaypoint));
+
                     transform.position = Vector3.MoveTowards(
                     transform.position,                                    // where from
-                    targetedTower.GetTargetPoint().position,               // where to
+                    enemyPath.GetWaypoint(currentTargetWaypoint).position,               // where to
                     speed * Time.deltaTime                                 // how fast
                     );
 
@@ -127,9 +128,9 @@ public class Enemy : MonoBehaviour
 
 
             case EnemyState.MovingToAttack:
-                {
-                    if (targetedTower != null && targetedTower.towerIsActive)
                     {
+                        if (targetedTower != null && targetedTower.towerIsActive)
+                        {
                             if (!enemySlotAroundTower)
                             {
                                 if (targetedTower.GetEnemySlot(this, out Transform slotTransform))
@@ -147,20 +148,22 @@ public class Enemy : MonoBehaviour
 
                             transform.LookAt(enemySlotAroundTower.transform.position);
                             transform.position = Vector3.MoveTowards(
-                        transform.position,                                    // where from
-                        enemySlotAroundTower.position,               // where to
-                        speed * Time.deltaTime                                 // how fast
-                        );
+                            transform.position,                                    // where from
+                            enemySlotAroundTower.transform.position,               // where to
+                            speed * Time.deltaTime                                 // how fast
+                            );
 
-                        if (Vector3.Distance(transform.position,
-                            enemySlotAroundTower.position) < 0.1f)
-                        {
-                            enemyState = EnemyState.Attacking; break;
+                            if (Vector3.Distance(transform.position,
+                                enemySlotAroundTower.transform.position) < 0.1f)
+                            {
+                                
+                                enemyState = EnemyState.Attacking; break;
+                            }
+                            break;
                         }
-                        break;
-                    }
-                    // Nothing to do, go back to travelling
-                    enemyState = EnemyState.Traveling; break;
+
+                        // Nothing to do, go back to travelling
+                        enemyState = EnemyState.Traveling; break;
                 }
 
             case EnemyState.Attacking:
