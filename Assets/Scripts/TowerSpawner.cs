@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
@@ -29,6 +30,7 @@ public class TowerSpawner : MonoBehaviour
 
     [SerializeField] GameSettingsSO gameSettings;
     [SerializeField] HUDmanager hudManager;
+    [SerializeField] TMP_Text status;
 
     //buttons
     [SerializeField] Button button1;
@@ -57,15 +59,15 @@ public class TowerSpawner : MonoBehaviour
 
 
             // create a tower with a button press
-            if (Input.GetKeyUp(KeyCode.Alpha1) && !spawnerIsActive && gameSettings.money > 0)
+            if (Input.GetKeyUp(KeyCode.Alpha1) && !spawnerIsActive && gameSettings.money >= towerDefault.towerCost)
             {
                 StartTowerPlacement(towerDefault);
             }
-            if (Input.GetKeyUp(KeyCode.Alpha2) && !spawnerIsActive && gameSettings.money > 0)
+            if (Input.GetKeyUp(KeyCode.Alpha2) && !spawnerIsActive && gameSettings.money >= towerFast.towerCost)
             {
                 StartTowerPlacement(towerFast);
             }
-            if (Input.GetKeyUp(KeyCode.Alpha3) && !spawnerIsActive && gameSettings.money > 0)
+            if (Input.GetKeyUp(KeyCode.Alpha3) && !spawnerIsActive && gameSettings.money >= towerHeavy.towerCost)
             {
                 StartTowerPlacement(towerHeavy);
             }
@@ -73,6 +75,7 @@ public class TowerSpawner : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Alpha1) && !spawnerIsActive && gameSettings.money == 0)
             {
                 Debug.Log($"Not enough money!");
+                StartCoroutine(StatusUpdate());
             }
 
             // place the tower
@@ -146,7 +149,7 @@ public class TowerSpawner : MonoBehaviour
 
     private void StartTowerPlacement(Tower newTower)
     {
-        if (!spawnerIsActive && gameSettings.money > 0)
+        if (!spawnerIsActive && gameSettings.money >= newTower.towerCost)
         {
 
             towerIndicator = Instantiate(newTower, mousePosition, Quaternion.identity);
@@ -157,9 +160,15 @@ public class TowerSpawner : MonoBehaviour
         else
         {
             Debug.Log($"Not enough money!");
+            StartCoroutine(StatusUpdate());
         }
            
     } 
 
-
+    IEnumerator StatusUpdate()
+    {
+        status.text = $"Not enough money!";
+        yield return new WaitForSeconds(3);
+        status.text = $" ";
+    }
 }
