@@ -37,6 +37,6 @@ public class RandomEvent : MonoBehaviour
         itemName = randomItemNames[randomIndex];
     
         panel.GetComponent<Image>().sprite = item;
-        randomItemName.text = "You get a..." + itemName;
+        randomItemName.text = "a..." + itemName;
     }
 }
