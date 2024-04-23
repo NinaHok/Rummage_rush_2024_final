@@ -1,9 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.ProBuilder.MeshOperations;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
+    private enum EnemyState
+    {
+        Stopped,
+        Traveling,
+        MovingToAttack,
+        Attacking
+    }
+
+    private EnemyState enemyState;
+
+    private Transform enemySlotAroundTower;
+
     //default values or reset values
     [SerializeField] public float defaultSpeed;
 
@@ -53,7 +67,6 @@ public class Enemy : MonoBehaviour
     // remember where to go
     private int currentTargetWaypoint = 0;
 
-    private bool hasReachedEnd;
 
     private void Awake()
     {
@@ -61,56 +74,39 @@ public class Enemy : MonoBehaviour
         maxHealth = defaultHealth;
         currentHealth = maxHealth;
         speed = defaultSpeed;
+        enemyState = EnemyState.Traveling;
     }
 
     private void Update()
     {
         if (gameSettings.currentGameState == GameStates.inGame)
         {
-
-            if (!hasReachedEnd) // hasReachedEnd == false
-            {
-                // block comments:    ctrl + k, ctrl + c 
-                // unblock comments:  ctlr + k, ctrl + u 
-
-                ScanForTower();
-
-
-                if (targetedTower != null && targetedTower.towerIsActive)
+            switch (enemyState)
+            { 
+            case EnemyState.Stopped:
                 {
+
+                    ScanForTower();
+
+
+                    if (targetedTower != null && targetedTower.towerIsActive)
+                        enemyState = EnemyState.MovingToAttack;
+                    break;
+                }
+
+            case EnemyState.Traveling:
+                {
+                    if (currentTargetWaypoint >= enemyPath.GetNumberOfWaypoints())
+                    {
+                        enemyState = EnemyState.Stopped;
+
+                        break;
+                    }
+
                     transform.LookAt(targetedTower.transform.position);
                     transform.position = Vector3.MoveTowards(
                     transform.position,                                    // where from
                     targetedTower.GetTargetPoint().position,               // where to
-                    speed * Time.deltaTime                                 // how fast
-                    );
-
-                    foreach (Collider tower in colliders)
-                    {
-                        damageDealingTimer += Time.deltaTime;
-                        if (damageDealingTimer >= damageDealingDelay)
-                        {
-                            damageDealingTimer = 0;
-                            targetedTower.TakeDamage(enemyDamage);
-
-
-                        }
-
-                    }
-
-                }
-
-
-
-                {
-
-                    // look at the destination
-                    transform.LookAt(enemyPath.GetWaypoint(currentTargetWaypoint));
-
-                    // move to the destination
-                    transform.position = Vector3.MoveTowards(
-                    transform.position,                                    // where from
-                    enemyPath.GetWaypoint(currentTargetWaypoint).position, // where to
                     speed * Time.deltaTime                                 // how fast
                     );
 
@@ -120,23 +116,81 @@ public class Enemy : MonoBehaviour
                     {
                         // increment the current target waypoint
                         currentTargetWaypoint++;
-
-                        // have we surpassed the last waypoint?
-                        if (currentTargetWaypoint >= enemyPath.GetNumberOfWaypoints())
-                        {
-                            hasReachedEnd = true;  // have we reached the end of the road? 
-                        }
-
                     }
+
+                    ScanForTower();
+
+                    if (targetedTower != null && targetedTower.towerIsActive)
+                        enemyState = EnemyState.MovingToAttack;
+                    break;
+                }
+
+
+            case EnemyState.MovingToAttack:
+                {
+                    if (targetedTower != null && targetedTower.towerIsActive)
+                    {
+                            if (!enemySlotAroundTower)
+                            {
+                                if (targetedTower.GetEnemySlot(this, out Transform slotTransform))
+                                {
+                                    enemySlotAroundTower = slotTransform;
+                                }
+                                else
+                                {
+                                    // Cannot find a free slot around the tower
+                                    // Getting out of here
+                                    enemyState = EnemyState.Traveling; break;
+                                }
+                            }
+
+
+                            transform.LookAt(enemySlotAroundTower.transform.position);
+                            transform.position = Vector3.MoveTowards(
+                        transform.position,                                    // where from
+                        enemySlotAroundTower.position,               // where to
+                        speed * Time.deltaTime                                 // how fast
+                        );
+
+                        if (Vector3.Distance(transform.position,
+                            enemySlotAroundTower.position) < 0.1f)
+                        {
+                            enemyState = EnemyState.Attacking; break;
+                        }
+                        break;
+                    }
+                    // Nothing to do, go back to travelling
+                    enemyState = EnemyState.Traveling; break;
+                }
+
+            case EnemyState.Attacking:
+                {
+                    if (targetedTower != null && targetedTower.towerIsActive)
+                    {
+                        foreach (Collider tower in colliders)
+                        {
+                            damageDealingTimer += Time.deltaTime;
+                            if (damageDealingTimer >= damageDealingDelay)
+                            {
+                                damageDealingTimer = 0;
+                                targetedTower.TakeDamage(enemyDamage);
+                            }
+                        }
+                        break;
+                    }
+
+                    // Nothing to do, go back to travelling
+                    enemyState = EnemyState.Traveling; break;
                 }
             }
+
         }
+
     }
 
 
-
-    // let the enemy know which path to follow
-    public void SetEnemyPath(EnemyPath incomingPath)
+        // let the enemy know which path to follow
+        public void SetEnemyPath(EnemyPath incomingPath)
     {
         enemyPath = incomingPath;
     }
