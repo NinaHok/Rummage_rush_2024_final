@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultFiringDelay: 1
-  towerCost: 25
+  towerCost: 15
   towerHealth: 20
   currentTowerHealth: 0
   range: 5

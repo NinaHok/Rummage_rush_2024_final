@@ -31,10 +31,24 @@ public class HUDmanager : MonoBehaviour
     [SerializeField] Button buttonResume;
 
 
+    private void Start()
+    {
+        UpdateMoneyText();
+
+        if (pauseScreen.activeInHierarchy == true)
+        {
+            pauseScreen.SetActive(false);
+        }
+    }
 
     private void Update()
     {
         if (winScreen.activeInHierarchy == true)
+        {
+            randomEventScreen.SetActive(false);
+        }
+
+        if (gameOverScreen.activeInHierarchy == true)
         {
             randomEventScreen.SetActive(false);
         }
