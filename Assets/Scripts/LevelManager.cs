@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,7 +18,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Homebase homebase;
 
     [SerializeField] float randomEventTimer;
-    [SerializeField] float randomEventDuration = 10f;
+    [SerializeField] public float randomEventDuration = 10f;
 
     [SerializeField] Tower towerDefault;
     [SerializeField] Tower towerFast;
@@ -28,6 +29,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Enemy enemyHeavy;
 
     [SerializeField] Enemy[] enemiesInTheScene;
+
+    [SerializeField] TMP_Text randomItemDescription;
 
     private void Awake()
     {
@@ -104,7 +107,7 @@ public class LevelManager : MonoBehaviour
 
         if (gameSettings.currentGameState == GameStates.inGame)
         {
-            if (gameSettings.damageDealt == 30f)
+            if (gameSettings.damageDealt == 60f)
             {
                 randomEvent.item = null;
                 randomEvent.itemName = null;
@@ -142,8 +145,7 @@ public class LevelManager : MonoBehaviour
 
                 if (randomEvent.itemName == "Banana peel")
                 {
-                    
-
+                 
                     foreach (Enemy enemy in enemySpawner.enemies)
                     enemy.speed = 1f;
 
@@ -153,30 +155,40 @@ public class LevelManager : MonoBehaviour
 
                 else if (randomEvent.itemName == "Cardboard box")
                 {
+                    randomItemDescription.text = 
+                        $"Homebase is immune to damage for {randomEventDuration} seconds!";
                     homebase.damageTakingDelay = 10f;
                 }
 
                 else if (randomEvent.itemName == "Crushed can")
-                { 
-                    foreach(Tower tower in towerSpawner.towers)
+                {
+                    randomItemDescription.text =
+                        $"Raccons shoot faster for {randomEventDuration} seconds!";
+                    foreach (Tower tower in towerSpawner.towers)
                     tower.firingDelay = 0.3f;
                 }
 
                 else if (randomEvent.itemName == "Lavalamp")
                 {
+                    randomItemDescription.text =
+                        $"Raccons are distracted and can't defend for {randomEventDuration} seconds!";
                     foreach (Tower tower in towerSpawner.towers)
                         tower.firingDelay = 10f;
                 }
 
                 else if (randomEvent.itemName == "Moldy brownie")
-                {;
+                {
+                    randomItemDescription.text =
+                        $"Raccons are sick and can't defend for {randomEventDuration} seconds!";
                     foreach (Tower tower in towerSpawner.towers)
                         tower.firingDelay = 10f;
                 }
 
                 else if (randomEvent.itemName == "Plastic knife")
                 {
-                    
+                    randomItemDescription.text =
+                        $"For {randomEventDuration} seconds enemies' maximum health is reduced!";
+
                     foreach (Enemy enemy in enemiesInTheScene)
                     {
                         enemy.maxHealth = 5f;
@@ -193,7 +205,7 @@ public class LevelManager : MonoBehaviour
             {
                 randomEvent.item = null;
                 randomEvent.itemName = null;
-               
+                FindEnemiesInTheScene();
 
                 foreach (Enemy enemy in enemySpawner.enemies)
                     enemy.speed = enemy.defaultSpeed;
@@ -212,9 +224,8 @@ public class LevelManager : MonoBehaviour
 
 
         }
-                       
-                
-                 
+                    
+         
     }
 
 
@@ -223,6 +234,7 @@ public class LevelManager : MonoBehaviour
         enemiesInTheScene = UnityEngine.Object.FindObjectsOfType<Enemy>();
 
     }
+
 
 }
 

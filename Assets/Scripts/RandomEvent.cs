@@ -12,9 +12,11 @@ public class RandomEvent : MonoBehaviour
     [SerializeField] List<Sprite> randomItems;
     [SerializeField] List<string> randomItemNames;
     [SerializeField] TMP_Text randomItemName;
+    [SerializeField] TMP_Text randomItemDescription;
     [SerializeField] GameObject panel;
 
     [SerializeField] EventManagerSO eventManager;
+    [SerializeField] LevelManager levelManager;
 
     private int randomIndex;
     public Sprite item;
@@ -35,8 +37,44 @@ public class RandomEvent : MonoBehaviour
         randomIndex = Random.Range(0, randomItems.Count);
         item = randomItems[randomIndex];
         itemName = randomItemNames[randomIndex];
-    
+
         panel.GetComponent<Image>().sprite = item;
-        randomItemName.text = "a..." + itemName;
+        randomItemName.text = "a " + itemName;
+
+        if (itemName == "Banana peel")
+        {
+            randomItemDescription.text =
+                $"Slows down enemies for {levelManager.randomEventDuration} seconds!";
+
+        }
+
+        else if (itemName == "Crushed can")
+        {
+            randomItemDescription.text =
+                $"Raccons shoot faster for {levelManager.randomEventDuration} seconds!";
+
+        }
+
+        else if (itemName == "Lavalamp")
+        {
+            randomItemDescription.text =
+                $"Raccons are distracted and can't defend for {levelManager.randomEventDuration} seconds!";
+
+        }
+
+        else if (itemName == "Moldy brownie")
+        {
+            randomItemDescription.text =
+                $"Raccons are sick and can't defend for {levelManager.randomEventDuration} seconds!";
+
+        }
+
+        else if (itemName == "Plastic knife")
+        {
+            randomItemDescription.text =
+                $"For {levelManager.randomEventDuration} seconds enemies' maximum health is reduced!";
+
+
+        }
     }
 }

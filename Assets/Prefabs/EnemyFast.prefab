@@ -52,7 +52,7 @@ MonoBehaviour:
   defaultHealth: 10
   speed: 4
   enemyDamage: 5
-  rewardCost: 30
+  rewardCost: 20
   damageDealingTimer: 0
   damageDealingDelay: 2
   enemyPath: {fileID: 0}
