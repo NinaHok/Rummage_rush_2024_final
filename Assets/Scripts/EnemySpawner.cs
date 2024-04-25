@@ -56,7 +56,7 @@ public class EnemySpawner : MonoBehaviour
         //    yield return new WaitForSeconds(Random.Range(randomDelayMin, randomDelayMax));
         //}
 
-        yield return new WaitForSeconds(2);                                     // wait for 2 seconds
+        yield return new WaitForSeconds(4);                                     // wait for 2 seconds
         SpawnEnemy(enemyDefault, paths[(int)Random.Range(0, paths.Count)]);    // then spawn
 
         yield return new WaitForSeconds(2);     

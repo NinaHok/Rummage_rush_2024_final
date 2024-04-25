@@ -13,6 +13,10 @@ public class HUDmanager : MonoBehaviour
     [SerializeField] GameSettingsSO gameSettings;
 
     [SerializeField] Tower tower;
+    [SerializeField] Tower towerDefault;
+    [SerializeField] Tower towerFast;
+    [SerializeField] Tower towerHeavy;
+
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] GameObject tutorialScreen;
     [SerializeField] GameObject pauseScreen;
@@ -30,6 +34,10 @@ public class HUDmanager : MonoBehaviour
 
     [SerializeField] Button buttonResume;
 
+    [SerializeField] TMP_Text towerDefaultCost;
+    [SerializeField] TMP_Text towerFastCost;
+    [SerializeField] TMP_Text towerHeavyCost;
+
 
     private void Start()
     {
@@ -39,6 +47,10 @@ public class HUDmanager : MonoBehaviour
         {
             pauseScreen.SetActive(false);
         }
+
+        towerDefaultCost.text = $"{towerDefault.towerCost}";
+        towerFastCost.text = $"{towerFast.towerCost}";
+        towerHeavyCost.text = $"{towerHeavy.towerCost}";
     }
 
     private void Update()

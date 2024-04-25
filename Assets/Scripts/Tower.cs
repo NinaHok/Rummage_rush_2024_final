@@ -72,7 +72,10 @@ public class Tower : MonoBehaviour
                 if (scanningTimer >= scanningDelay)
                 {
                     scanningTimer = 0;   // reset scanning timer
-                    ScanForEnemies();    // call the scan function
+                    if (targetedEnemy == null)
+                    {
+                        ScanForEnemies();    // call the scan function
+                    }
                 }
 
 
