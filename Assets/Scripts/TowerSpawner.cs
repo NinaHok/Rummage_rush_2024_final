@@ -55,8 +55,7 @@ public class TowerSpawner : MonoBehaviour
     private void Update()
     {
         if (gameSettings.currentGameState == GameStates.inGame)
-        {
-
+        {         
 
             // create a tower with a button press
             if (Input.GetKeyUp(KeyCode.Alpha1) && !spawnerIsActive && gameSettings.money >= towerDefault.towerCost)
@@ -171,4 +170,5 @@ public class TowerSpawner : MonoBehaviour
         yield return new WaitForSeconds(3);
         status.text = $" ";
     }
+
 }
