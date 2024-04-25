@@ -48,24 +48,30 @@ public class RandomEvent : MonoBehaviour
 
         }
 
+        else if (itemName == "Cardboard box")
+        {
+            randomItemDescription.text =
+                $"Homebase is immune to damage for {levelManager.randomEventDuration} seconds!";
+        }
+
         else if (itemName == "Crushed can")
         {
             randomItemDescription.text =
-                $"Raccons shoot faster for {levelManager.randomEventDuration} seconds!";
+                $"Raccoons shoot faster for {levelManager.randomEventDuration} seconds!";
 
         }
 
         else if (itemName == "Lavalamp")
         {
             randomItemDescription.text =
-                $"Raccons are distracted and can't defend for {levelManager.randomEventDuration} seconds!";
+                $"Raccoons are distracted and can't defend for {levelManager.randomEventDuration} seconds!";
 
         }
 
         else if (itemName == "Moldy brownie")
         {
             randomItemDescription.text =
-                $"Raccons are sick and can't defend for {levelManager.randomEventDuration} seconds!";
+                $"Raccoons are sick and can't defend for {levelManager.randomEventDuration} seconds!";
 
         }
 

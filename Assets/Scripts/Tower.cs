@@ -16,7 +16,7 @@ public class Tower : MonoBehaviour
     [SerializeField] float range = 3.0f;
     [SerializeField] Projectile projectile;
     [SerializeField] Transform firingPoint;
-    [SerializeField] Transform targetPoint;
+
 
     public bool towerIsActive;
 
@@ -168,10 +168,10 @@ public class Tower : MonoBehaviour
         }
     }
 
-    public Transform GetTargetPoint()
-    {
-        return targetPoint;
-    }
+    //public Transform GetTargetPoint()
+    //{
+    //    return targetPoint;
+    //}
 
     public bool GetEnemySlot(Enemy enemy, out Transform transform)
     {
