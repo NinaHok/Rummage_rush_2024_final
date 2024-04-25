@@ -18,7 +18,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Homebase homebase;
 
     [SerializeField] float randomEventTimer;
-    [SerializeField] public float randomEventDuration = 10f;
+    [SerializeField] public float randomEventDuration = 8f;
 
     [SerializeField] Tower towerDefault;
     [SerializeField] Tower towerFast;
